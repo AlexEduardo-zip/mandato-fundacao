@@ -1,3 +1,4 @@
+import { defaultTexts, type GameTexts } from "./texts.js";
 import type { OfficeId, WorldState } from "./types.js";
 
 export type OfficeLevel = "municipal" | "general";
@@ -49,6 +50,47 @@ export interface CareerConfig {
   parallel: Record<string, OfficeId[]>;
 }
 
+export interface EvaluationConfig {
+  weights: {
+    position: number;
+    performance: number;
+    reputation: number;
+    consistency: number;
+    legacy: number;
+    fidelity: number;
+  };
+  /** Position score by highest ladder rank (index = rank, 0 = never held office). */
+  positionByRank: number[];
+  performance: { winRate: number; perTerm: number; maxTerms: number };
+  reputation: {
+    integrity: number;
+    base: number;
+    media: number;
+    cleanliness: number;
+    removedPenalty: number;
+  };
+  /** Style tag -> archetype id. The dominant style defines Reformador, Articulador, etc. */
+  styleTags: Record<string, string>;
+  neutralScore: number;
+  legacyTagWeights: Record<string, number>;
+  fidelity: { loyalTag: string; betrayalTag: string; step: number };
+  /** Minimum total score for each legacy tier, ascending (Anônimo ... Histórico). */
+  tierMinimums: number[];
+  tags: { removed: string; retired: string };
+  archetype: {
+    fallenReputation: number;
+    fallenMinRank: number;
+    statesmanTier: number;
+    statesmanReputation: number;
+    betrayedFidelity: number;
+    loyalFidelity: number;
+    unfulfilledPerformance: number;
+    unfulfilledAmbition: number;
+    styleConsistency: number;
+  };
+  peakTotal: number;
+}
+
 // Balance numbers live here (defaults from docs/09-parametros-v0.md); content can override them.
 export interface EngineConfig {
   startYear: number;
@@ -63,6 +105,8 @@ export interface EngineConfig {
   careerEventsPerTurn: number;
   election: ElectionConfig;
   career: CareerConfig;
+  evaluation: EvaluationConfig;
+  texts: GameTexts;
   offices: Record<OfficeId, OfficeConfig>;
 }
 
@@ -110,6 +154,43 @@ export const defaultConfig: EngineConfig = {
       lideranca_partidaria: ["vereador", "deputado", "senador"],
     },
   },
+  evaluation: {
+    weights: {
+      position: 0.25,
+      performance: 0.2,
+      reputation: 0.15,
+      consistency: 0.15,
+      legacy: 0.15,
+      fidelity: 0.1,
+    },
+    positionByRank: [0, 20, 35, 50, 75, 100],
+    performance: { winRate: 60, perTerm: 8, maxTerms: 5 },
+    reputation: { integrity: 0.35, base: 0.25, media: 0.2, cleanliness: 0.2, removedPenalty: 25 },
+    styleTags: {
+      style_reformer: "reformador",
+      style_pragmatic: "articulador",
+      style_populist: "populista",
+      style_technocrat: "tecnocrata",
+    },
+    neutralScore: 50,
+    legacyTagWeights: { legacy_law: 8, legacy_work: 6, legacy_scandal: -10, legacy_failure: -6 },
+    fidelity: { loyalTag: "origin_loyal", betrayalTag: "origin_betrayal", step: 10 },
+    tierMinimums: [0, 25, 45, 65, 82],
+    tags: { removed: "cassado", retired: "aposentado" },
+    archetype: {
+      fallenReputation: 30,
+      fallenMinRank: 2,
+      statesmanTier: 3,
+      statesmanReputation: 60,
+      betrayedFidelity: 25,
+      loyalFidelity: 75,
+      unfulfilledPerformance: 40,
+      unfulfilledAmbition: 60,
+      styleConsistency: 60,
+    },
+    peakTotal: 65,
+  },
+  texts: defaultTexts,
   offices: {
     vereador: {
       label: "Vereador",

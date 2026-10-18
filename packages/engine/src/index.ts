@@ -11,3 +11,5 @@ export * from "./select.js";
 export * from "./resolve.js";
 export * from "./election.js";
 export * from "./career.js";
+export * from "./evaluation.js";
+export * from "./texts.js";
