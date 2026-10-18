@@ -49,11 +49,14 @@ export interface ScheduledEvent {
 
 export interface HistoryEntry {
   year: number;
-  kind: "anchor" | "event" | "choice" | "headline";
+  kind: "anchor" | "event" | "choice" | "headline" | "election";
   eventId?: string;
   choiceId?: string;
   outcomeIndex?: number;
   text?: string;
+  office?: OfficeId;
+  won?: boolean;
+  votePct?: number;
 }
 
 export interface PlayerState {

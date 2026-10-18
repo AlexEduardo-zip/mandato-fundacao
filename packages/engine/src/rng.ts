@@ -47,6 +47,13 @@ export class Rng {
     return this.float() < probability;
   }
 
+  /** Normal draw (Box-Muller), consuming two floats. */
+  gaussian(mean: number, sigma: number): number {
+    const u = 1 - this.float();
+    const v = this.float();
+    return mean + sigma * Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+
   pick<T>(items: readonly T[]): T {
     if (items.length === 0) throw new RangeError("cannot pick from an empty list");
     return items[this.int(0, items.length - 1)] as T;

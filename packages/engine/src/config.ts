@@ -1,4 +1,53 @@
-import type { WorldState } from "./types.js";
+import type { OfficeId, WorldState } from "./types.js";
+
+export type OfficeLevel = "municipal" | "general";
+
+export interface OfficeConfig {
+  label: string;
+  /** Position on the career ladder, 1 = lowest. */
+  rank: number;
+  level: OfficeLevel;
+  branch: "executive" | "legislative";
+  termYears: number;
+  minAge: number;
+  /** Mean strength of the rivals (doc 09). */
+  adversaryStrength: number;
+  adversaries: number;
+  /** Proportional races: the player wins by beating this quantile of the rivals' scores. */
+  percentile?: number;
+  /** First year the office is on the ballot (the general cycle then repeats every 4 years). */
+  firstYear?: number;
+  /** One-off elections outside the regular cycle. */
+  extraYears?: number[];
+}
+
+export interface ElectionConfig {
+  weights: {
+    base: number;
+    media: number;
+    money: number;
+    electoralStrategy: number;
+    mood: number;
+    capital: number;
+  };
+  scandalPenalty: number;
+  scandalTag: string;
+  polarizationRejection: { threshold: number; coef: number };
+  noiseSigma: number;
+  adversaryVariation: number;
+}
+
+export interface CareerConfig {
+  /** Executive reelection is allowed once, from this year on. */
+  reelectionFromYear: number;
+  executiveMaxConsecutiveTerms: number;
+  /** A candidate may aim at most this many rungs above the highest office held. */
+  ladderReach: number;
+  entryOffices: OfficeId[];
+  ineligibleTag: string;
+  /** Appointments that can be held alongside a seat: parallel id -> offices it is compatible with. */
+  parallel: Record<string, OfficeId[]>;
+}
 
 // Balance numbers live here (defaults from docs/09-parametros-v0.md); content can override them.
 export interface EngineConfig {
@@ -12,6 +61,9 @@ export interface EngineConfig {
   defaultEventWeight: number;
   eventCooldownTurns: number;
   careerEventsPerTurn: number;
+  election: ElectionConfig;
+  career: CareerConfig;
+  offices: Record<OfficeId, OfficeConfig>;
 }
 
 export const defaultConfig: EngineConfig = {
@@ -32,4 +84,96 @@ export const defaultConfig: EngineConfig = {
   defaultEventWeight: 1,
   eventCooldownTurns: 3,
   careerEventsPerTurn: 2,
+  election: {
+    weights: {
+      base: 0.3,
+      media: 0.15,
+      money: 0.15,
+      electoralStrategy: 0.1,
+      mood: 0.15,
+      capital: 0.15,
+    },
+    scandalPenalty: 4,
+    scandalTag: "scandal_active",
+    polarizationRejection: { threshold: 50, coef: 0.2 },
+    noiseSigma: 6,
+    adversaryVariation: 10,
+  },
+  career: {
+    reelectionFromYear: 1997,
+    executiveMaxConsecutiveTerms: 2,
+    ladderReach: 2,
+    entryOffices: ["vereador", "prefeito", "deputado"],
+    ineligibleTag: "ineligible",
+    parallel: {
+      secretario: ["vereador", "deputado", "senador"],
+      lideranca_partidaria: ["vereador", "deputado", "senador"],
+    },
+  },
+  offices: {
+    vereador: {
+      label: "Vereador",
+      rank: 1,
+      level: "municipal",
+      branch: "legislative",
+      termYears: 4,
+      minAge: 18,
+      adversaryStrength: 45,
+      adversaries: 9,
+      percentile: 0.5,
+    },
+    prefeito: {
+      label: "Prefeito",
+      rank: 2,
+      level: "municipal",
+      branch: "executive",
+      termYears: 4,
+      minAge: 21,
+      adversaryStrength: 50,
+      adversaries: 3,
+    },
+    deputado: {
+      label: "Deputado",
+      rank: 3,
+      level: "general",
+      branch: "legislative",
+      termYears: 4,
+      minAge: 21,
+      adversaryStrength: 55,
+      adversaries: 9,
+      percentile: 0.6,
+    },
+    senador: {
+      label: "Senador",
+      rank: 4,
+      level: "general",
+      branch: "legislative",
+      termYears: 8,
+      minAge: 35,
+      adversaryStrength: 60,
+      adversaries: 3,
+    },
+    governador: {
+      label: "Governador",
+      rank: 4,
+      level: "general",
+      branch: "executive",
+      termYears: 4,
+      minAge: 30,
+      adversaryStrength: 60,
+      adversaries: 3,
+    },
+    presidente: {
+      label: "Presidente",
+      rank: 5,
+      level: "general",
+      branch: "executive",
+      termYears: 4,
+      minAge: 35,
+      adversaryStrength: 65,
+      adversaries: 4,
+      firstYear: 1994,
+      extraYears: [1989],
+    },
+  },
 };

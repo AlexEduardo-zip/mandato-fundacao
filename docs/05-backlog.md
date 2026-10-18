@@ -39,7 +39,7 @@ O backlog tem duas trilhas (ADR-008):
 | [x] | E1-5 | Pipeline de turno anual | P0 | L |
 | [x] | E1-6 | Seleção de eventos por peso, elegibilidade e cooldown | P0 | M |
 | [x] | E1-7 | Resolução de decisão com resultados probabilísticos | P0 | M |
-| [ ] | E1-8 | Modelo de eleição v0 e adversários gerados | P0 | L |
+| [x] | E1-8 | Modelo de eleição v0 e adversários gerados | P0 | L |
 | [ ] | E1-9 | Escada de cargos, mandatos, reeleição e cargos paralelos | P0 | M |
 | [ ] | E1-10 | Avaliador final: dimensões, arquétipo, nível de legado | P0 | L |
 | [ ] | E1-11 | Replay a partir de `{seed, decisions}` e migração de save | P0 | M |

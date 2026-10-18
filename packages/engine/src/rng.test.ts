@@ -74,3 +74,17 @@ describe("rng", () => {
     expect(() => rng.pick([])).toThrow(RangeError);
   });
 });
+
+describe("gaussian", () => {
+  it("has roughly the requested mean and sigma and is deterministic", () => {
+    const rng = new Rng(createRngState("gauss"));
+    const xs = Array.from({ length: 4000 }, () => rng.gaussian(10, 6));
+    const mean = xs.reduce((a, b) => a + b, 0) / xs.length;
+    const sd = Math.sqrt(xs.reduce((a, b) => a + (b - mean) ** 2, 0) / xs.length);
+    expect(mean).toBeGreaterThan(9.5);
+    expect(mean).toBeLessThan(10.5);
+    expect(sd).toBeGreaterThan(5.6);
+    expect(sd).toBeLessThan(6.4);
+    expect(new Rng(5).gaussian(0, 1)).toBe(new Rng(5).gaussian(0, 1));
+  });
+});
