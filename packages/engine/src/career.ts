@@ -1,4 +1,5 @@
 import { defaultConfig, type EngineConfig } from "./config.js";
+import { electionHeadline, mandateEndHeadline } from "./headlines.js";
 import { officeConfig, runElection, type ElectionResult } from "./election.js";
 import type { GameState, OfficeId } from "./types.js";
 
@@ -51,6 +52,11 @@ export function candidacyOptions(
   return Object.keys(config.offices).filter((o) => checkCandidacy(state, o, config).ok);
 }
 
+function withHeadline(state: GameState, text: string): GameState {
+  const entry = { year: state.player.year, kind: "headline" as const, text };
+  return { ...state, player: { ...state.player, history: [...state.player.history, entry] } };
+}
+
 /** Runs the race for `office`; a win takes the seat and starts a new mandate. */
 export function stand(
   state: GameState,
@@ -59,7 +65,12 @@ export function stand(
 ): { state: GameState; result: ElectionResult } {
   const check = checkCandidacy(state, office, config);
   if (!check.ok) throw new Error(`cannot run for ${office}: ${check.reason}`);
-  const ran = runElection(state, office, config);
+  const first = runElection(state, office, config);
+  const news = electionHeadline(first.result, first.state.rng, config);
+  const ran = {
+    result: first.result,
+    state: withHeadline({ ...first.state, rng: news.rng }, news.text),
+  };
   if (!ran.result.won) return ran;
 
   const { player } = ran.state;
@@ -90,10 +101,12 @@ export function expireMandate(state: GameState, config: EngineConfig = defaultCo
   const { office, career, year } = state.player;
   if (office === null || career.termStartYear === null) return state;
   if (year < career.termStartYear + officeConfig(office, config).termYears) return state;
+  const news = mandateEndHeadline(office, year, state.rng, config);
+  const lapsed = withHeadline({ ...state, rng: news.rng }, news.text);
   return {
-    ...state,
+    ...lapsed,
     player: {
-      ...state.player,
+      ...lapsed.player,
       office: null,
       career: { ...career, termStartYear: null, consecutiveTerms: 0, parallel: [] },
     },

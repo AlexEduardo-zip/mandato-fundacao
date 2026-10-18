@@ -14,3 +14,4 @@ export * from "./career.js";
 export * from "./evaluation.js";
 export * from "./texts.js";
 export * from "./save.js";
+export * from "./headlines.js";

@@ -4,6 +4,9 @@ export interface GameTexts {
   tiers: string[];
   endings: Record<string, { label: string; summary: string }>;
   verdictSummary: string;
+  /** Headline variants per situation; placeholders: {office} {pct} {year}. */
+  headlines: Record<string, string[]>;
+  summary: { empty: string; election: string; event: string; decision: string; anchor: string };
 }
 
 export const defaultTexts: GameTexts = {
@@ -65,4 +68,26 @@ export const defaultTexts: GameTexts = {
     },
   },
   verdictSummary: "{archetype}. Cargo mais alto: {office}. Legado: {tier}.",
+  headlines: {
+    election_win_big: [
+      "Vitória esmagadora: {pct}% dos votos para {office}",
+      "Urnas falam alto e dão {pct}% ao novo {office}",
+    ],
+    election_win: [
+      "Eleito {office} com {pct}% dos votos",
+      "Candidato chega a {office} com {pct}% e promete cumprir o programa",
+    ],
+    election_loss: [
+      "Derrota nas urnas: {pct}% não bastam para {office}",
+      "Corrida por {office} termina com {pct}% e silêncio no comitê",
+    ],
+    mandate_end: ["Mandato de {office} chega ao fim em {year}"],
+  },
+  summary: {
+    empty: "Um ano sem grandes acontecimentos.",
+    election: "Eleição para {office}: {result} ({pct}%).",
+    event: "Aconteceu: {title}.",
+    decision: "Decisão: {text}",
+    anchor: "No país: {title}.",
+  },
 };
