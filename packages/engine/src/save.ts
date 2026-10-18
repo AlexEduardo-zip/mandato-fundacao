@@ -1,19 +1,27 @@
 import { stand } from "./career.js";
+import { declineLastChance, joinParty, openDoor, startPhase } from "./civil.js";
 import { defaultConfig, type EngineConfig } from "./config.js";
 import { decide } from "./resolve.js";
-import { createGameState, type NewGameInput } from "./state.js";
+import { retire } from "./lifeend.js";
+import { createCharacter, type CharacterCreation } from "./origins.js";
+import { createGameState } from "./state.js";
 import { endTurn, startTurn } from "./turn.js";
 import type { Catalog, GameState } from "./types.js";
 
 export const SAVE_VERSION = 1;
 
-export type CharacterInput = Omit<NewGameInput, "seed">;
+/** Character data of the first decision; `quickStart` skips the civil phase. */
+export type CharacterInput = CharacterCreation & { quickStart?: boolean };
 
 /** One player action. The turn opens by itself before the first action of a year. */
 export type Decision =
   | { t: "create"; input: CharacterInput }
   | { t: "choice"; id: string }
   | { t: "stand"; office: string }
+  | { t: "join"; party?: string }
+  | { t: "door"; id: string }
+  | { t: "decline" }
+  | { t: "retire" }
   | { t: "end" };
 
 export interface SaveGame {
@@ -40,10 +48,24 @@ export function applyDecision(
   config: EngineConfig = defaultConfig,
 ): GameState {
   if (decision.t === "create") throw new Error("create is only valid as the first decision");
+  if (state.ended) throw new Error("the run is over");
   const open = openTurn(state, catalog, config);
   if (decision.t === "choice") return decide(open, catalog, decision.id, config);
   if (decision.t === "stand") return stand(open, decision.office, config).state;
+  if (decision.t === "join") return joinParty(open, decision.party);
+  if (decision.t === "door") return openDoor(open, decision.id, config);
+  if (decision.t === "decline") return declineLastChance(open);
+  if (decision.t === "retire") return retire(open, config);
   return endTurn(open, config);
+}
+
+/** Known origins go through the creation rules; unknown ones fall back to a raw state. */
+function buildCharacter(seed: string, character: CharacterInput, config: EngineConfig): GameState {
+  if (!config.origins[character.originId]) return createGameState({ ...character, seed }, config);
+  if (character.quickStart || character.phase === "politica") {
+    return startPhase(seed, character, config);
+  }
+  return createCharacter(seed, character, config);
 }
 
 export function createSession(
@@ -59,7 +81,7 @@ export function createSession(
       seed,
       decisions: [{ t: "create", input: character }],
     },
-    state: createGameState({ ...character, seed }, config),
+    state: buildCharacter(seed, character, config),
   };
 }
 
@@ -106,7 +128,9 @@ function migrateV0(raw: Raw): Raw {
   if (typeof raw.seed !== "string" || !isObject(raw.character) || !Array.isArray(raw.turns)) {
     throw new Error("invalid v0 save");
   }
-  const decisions: Decision[] = [{ t: "create", input: raw.character as CharacterInput }];
+  const decisions: Decision[] = [
+    { t: "create", input: raw.character as unknown as CharacterInput },
+  ];
   for (const turn of raw.turns as unknown[]) {
     if (!Array.isArray(turn)) throw new Error("invalid v0 save");
     for (const id of turn) decisions.push({ t: "choice", id: String(id) });
@@ -134,7 +158,11 @@ function validate(raw: Raw): SaveGame {
         (d.t === "end" ||
           (d.t === "create" && isObject(d.input)) ||
           (d.t === "choice" && typeof d.id === "string") ||
-          (d.t === "stand" && typeof d.office === "string")),
+          (d.t === "stand" && typeof d.office === "string") ||
+          (d.t === "join" && (d.party === undefined || typeof d.party === "string")) ||
+          (d.t === "door" && typeof d.id === "string") ||
+          d.t === "decline" ||
+          d.t === "retire"),
     );
   if (!ok) throw new Error("invalid save");
   return raw as unknown as SaveGame;

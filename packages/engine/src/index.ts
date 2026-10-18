@@ -17,3 +17,4 @@ export * from "./save.js";
 export * from "./headlines.js";
 export * from "./origins.js";
 export * from "./civil.js";
+export * from "./lifeend.js";

@@ -84,6 +84,10 @@ export const defaultTexts: GameTexts = {
       "Derrota nas urnas: {pct}% não bastam para {office}",
       "Corrida por {office} termina com {pct}% e silêncio no comitê",
     ],
+    removal: [
+      "{office} cassado em {year} após escândalo",
+      "Mandato de {office} cai em {year}: plenário cassa o eleito",
+    ],
     mandate_end: ["Mandato de {office} chega ao fim em {year}"],
   },
   summary: {

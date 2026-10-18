@@ -3,7 +3,7 @@ import { evaluateCondition } from "./conditions.js";
 import { defaultConfig, type DoorConfig, type EngineConfig } from "./config.js";
 import { applyEffects } from "./effects.js";
 import { officeConfig } from "./election.js";
-import { originConfig } from "./origins.js";
+import { createCharacter, originConfig, type CharacterCreation } from "./origins.js";
 import type { EntryDoorId, GameState, OfficeId } from "./types.js";
 
 export type DoorCheck = { ok: true; office: OfficeId } | { ok: false; reason: string };
@@ -186,4 +186,18 @@ export function declineLastChance(state: GameState): GameState {
     throw new Error("no last chance on offer");
   }
   return { ...state, ended: "vida_civil" };
+}
+
+/** Quick start: creates the character and skips the civil phase through the quick-start door. */
+export function startPhase(
+  seed: string,
+  input: CharacterCreation,
+  config: EngineConfig = defaultConfig,
+): GameState {
+  const civil = createCharacter(seed, input, config);
+  const player = {
+    ...civil.player,
+    civil: { ...civil.player.civil, joinedPartyYear: civil.player.year - 1 },
+  };
+  return openDoor({ ...civil, player }, config.civil.quickStartDoor, config, { quickStart: true });
 }

@@ -2,6 +2,7 @@ import { evaluateCondition } from "./conditions.js";
 import { defaultConfig, type EngineConfig } from "./config.js";
 import { expireMandate } from "./career.js";
 import { closeCivilYear } from "./civil.js";
+import { checkForcedEnd, checkRemoval } from "./lifeend.js";
 import { applyEffects, takeDueScheduled } from "./effects.js";
 import { Rng } from "./rng.js";
 import { selectEvents } from "./select.js";
@@ -80,10 +81,13 @@ export function startTurn(
 export function endTurn(state: GameState, config: EngineConfig = defaultConfig): GameState {
   if (!state.turnOpen) throw new Error("no open turn");
   if (state.pending.length > 0) throw new Error("decisions still pending");
-  const closed = closeCivilYear(expireMandate(state, config), config);
-  return {
-    ...closed,
-    turnOpen: false,
-    player: { ...closed.player, year: closed.player.year + 1, age: closed.player.age + 1 },
-  };
+  const closed = checkRemoval(closeCivilYear(expireMandate(state, config), config), config);
+  return checkForcedEnd(
+    {
+      ...closed,
+      turnOpen: false,
+      player: { ...closed.player, year: closed.player.year + 1, age: closed.player.age + 1 },
+    },
+    config,
+  );
 }
