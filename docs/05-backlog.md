@@ -33,7 +33,7 @@ O backlog tem duas trilhas (ADR-008):
 | ✔ | ID | História | Prior. | Tam. |
 |---|---|---|---|---|
 | [x] | E1-1 | RNG com seed e testes de determinismo | P0 | S |
-| [ ] | E1-2 | Tipos de estado, mundo, evento e decisão (doc 03) | P0 | M |
+| [x] | E1-2 | Tipos de estado, mundo, evento e decisão (doc 03) | P0 | M |
 | [ ] | E1-3 | Avaliador de condições (`all/any/not`, attr, tag, office, phase, origin, age, ano) | P0 | M |
 | [ ] | E1-4 | Aplicador de efeitos e agenda de consequências | P0 | M |
 | [ ] | E1-5 | Pipeline de turno anual | P0 | L |
