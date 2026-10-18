@@ -113,9 +113,10 @@ export function computeDimensions(
   );
 
   const fid = ev.fidelity;
+  const unkept = Math.max(0, (player.tags[fid.promiseTag] ?? 0) - (player.tags[fid.keptTag] ?? 0));
   const fidelity = clamp(
     ev.neutralScore +
-      fid.step * ((player.tags[fid.loyalTag] ?? 0) - (player.tags[fid.betrayalTag] ?? 0)),
+      fid.step * ((player.tags[fid.loyalTag] ?? 0) - (player.tags[fid.betrayalTag] ?? 0) - unkept),
     config,
   );
 
@@ -192,12 +193,19 @@ export function evaluate(state: GameState, config: EngineConfig = defaultConfig)
   const archetypeLabel = texts.archetypes[archetype]?.label ?? archetype;
   const legacyLabel = texts.tiers[tierIndex] ?? String(tierIndex + 1);
   const endingText = ending ? texts.endings[ending] : undefined;
+  const originLabel = config.origins[state.player.originId]?.label;
   const summary = [
     fill(texts.verdictSummary, {
       archetype: archetypeLabel,
       office: office ? (config.offices[office]?.label ?? office) : "nenhum",
       tier: legacyLabel,
     }),
+    originLabel && office
+      ? fill(texts.epilogue, {
+          origin: originLabel,
+          office: config.offices[office]?.label ?? office,
+        })
+      : undefined,
     endingText?.summary,
   ]
     .filter(Boolean)

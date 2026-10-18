@@ -56,7 +56,7 @@ O backlog tem duas trilhas (ADR-008):
 | [x] | E6-4 | Conversão de prestígio e rede em recursos políticos por origem e porta | P0 | M |
 | [ ] | E6-8 | Efeitos das âncoras históricas por origem | P1 | M |
 | [x] | E6-9 | Disponibilidade de origens por época (`availableFrom/Until`) | P1 | S |
-| [ ] | E6-11 | Fidelidade à origem na avaliação final e novos arquétipos | P1 | M |
+| [x] | E6-11 | Fidelidade à origem na avaliação final e novos arquétipos | P1 | M |
 | [ ] | E6-12 | Finais especiais (vida civil, cassado, aposentado no auge) e `startPhase` | P1 | S |
 
 ## E2 · Conteúdo (M2)

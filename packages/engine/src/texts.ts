@@ -4,6 +4,8 @@ export interface GameTexts {
   tiers: string[];
   endings: Record<string, { label: string; summary: string }>;
   verdictSummary: string;
+  /** Origin-to-office line of the epilogue; blank when either part is unknown. */
+  epilogue: string;
   /** Headline variants per situation; placeholders: {office} {pct} {year}. */
   headlines: Record<string, string[]>;
   summary: { empty: string; election: string; event: string; decision: string; anchor: string };
@@ -67,6 +69,7 @@ export const defaultTexts: GameTexts = {
       summary: "Saiu de cena no momento certo, com a carreira em alta.",
     },
   },
+  epilogue: "Da origem como {origin} ao cargo de {office}.",
   verdictSummary: "{archetype}. Cargo mais alto: {office}. Legado: {tier}.",
   headlines: {
     election_win_big: [

@@ -149,6 +149,37 @@ describe("legacy tiers", () => {
   });
 });
 
+describe("fidelity to the origin (E6-11)", () => {
+  const fidelity = (tags: Record<string, number>) =>
+    computeDimensions(build({}, { tags })).fidelity;
+
+  it("unkept promises to the category count against fidelity", () => {
+    expect(fidelity({})).toBe(50);
+    expect(fidelity({ promessa_categoria: 2 })).toBe(30);
+    expect(fidelity({ promessa_categoria: 2, promessa_cumprida: 2 })).toBe(50);
+    expect(fidelity({ promessa_categoria: 1, promessa_cumprida: 3 })).toBe(50);
+  });
+
+  it("a broken promise can turn Fiel into Traiu a base", () => {
+    const loyal = build(
+      {},
+      { tags: { origin_loyal: 3, promessa_categoria: 1, promessa_cumprida: 1 } },
+    );
+    expect(evaluate(loyal).archetype).toBe("fiel_origens");
+    const broken = build(
+      {},
+      { tags: { origin_loyal: 1, origin_betrayal: 1, promessa_categoria: 3 } },
+    );
+    expect(evaluate(broken).archetype).toBe("traiu_base");
+  });
+
+  it("the epilogue links the origin to the best office", () => {
+    const s = build({ originId: "ori_professor" }, { races: [race("senador", true)], rank: 4 });
+    expect(evaluate(s).summary).toContain("Da origem como Professor ao cargo de Senador.");
+    expect(evaluate(build({ originId: "ori_professor" })).summary).not.toContain("Da origem");
+  });
+});
+
 describe("special endings", () => {
   it("stayed in civil life", () => {
     const v = evaluate(build({ phase: "civil" }));
