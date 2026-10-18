@@ -38,12 +38,24 @@ export function createGameState(
     media: config.defaultResource,
     ...input.resources,
   };
+  const year = input.year ?? config.startYear;
+  const phase = input.phase ?? "civil";
   const player: PlayerState = {
-    year: input.year ?? config.startYear,
+    year,
     age: input.age,
-    phase: input.phase ?? "civil",
+    phase,
     originId: input.originId,
-    civil: { prestige: input.prestige ?? 0, network: input.network ?? 0, entryDoorsOpen: [] },
+    civil: {
+      prestige: input.prestige ?? 0,
+      network: input.network ?? 0,
+      entryDoorsOpen: [],
+      turns: 0,
+      joinedPartyYear: phase === "politica" ? year - 1 : null,
+      entryDoor: null,
+      plannedOffice: null,
+      windowYear: null,
+      lastChance: false,
+    },
     office: input.office ?? null,
     career: {
       termStartYear: input.office ? (input.year ?? config.startYear) : null,
@@ -65,5 +77,6 @@ export function createGameState(
     rng: createRngState(input.seed),
     pending: [],
     turnOpen: false,
+    ended: null,
   };
 }

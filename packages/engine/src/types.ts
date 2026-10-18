@@ -59,6 +59,23 @@ export interface HistoryEntry {
   votePct?: number;
 }
 
+export interface CivilState {
+  prestige: number;
+  network: number;
+  /** Doors whose requirements hold right now (refreshed at the end of each civil year). */
+  entryDoorsOpen: EntryDoorId[];
+  /** Completed civil years. */
+  turns: number;
+  joinedPartyYear: number | null;
+  entryDoor: EntryDoorId | null;
+  /** Office the opened door leads to; the first race must be for it. */
+  plannedOffice: OfficeId | null;
+  /** First election year the door converts into a candidacy. */
+  windowYear: number | null;
+  /** The last-chance offer after the final civil year is on the table. */
+  lastChance: boolean;
+}
+
 export interface CareerState {
   /** Year the current mandate began; null without an office. */
   termStartYear: number | null;
@@ -75,7 +92,7 @@ export interface PlayerState {
   age: number;
   phase: Phase;
   originId: OriginId;
-  civil: { prestige: number; network: number; entryDoorsOpen: EntryDoorId[] };
+  civil: CivilState;
   office: OfficeId | null;
   career: CareerState;
   party: PartyId;
@@ -87,6 +104,8 @@ export interface PlayerState {
   history: HistoryEntry[];
 }
 
+export type EndReason = "vida_civil" | "cassado" | "aposentadoria" | "fim_da_era";
+
 export interface GameState {
   player: PlayerState;
   world: WorldState;
@@ -94,6 +113,8 @@ export interface GameState {
   /** Ids of fired events that still wait for a decision, in order. */
   pending: string[];
   turnOpen: boolean;
+  /** Set once the run is over; no further turns are allowed. */
+  ended: EndReason | null;
 }
 
 export type Condition =
