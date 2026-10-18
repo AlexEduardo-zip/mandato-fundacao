@@ -50,10 +50,10 @@ O backlog tem duas trilhas (ADR-008):
 ## E6 · Vida civil e origens (M1), ver doc 07
 | ✔ | ID | História | Prior. | Tam. |
 |---|---|---|---|---|
-| [ ] | E6-1 | Fase 0 no pipeline: estado `civil`, turnos civis e transição para política | P0 | L |
-| [ ] | E6-2 | Regras de entrada: idade mínima, filiação, prazo e janela eleitoral | P0 | M |
-| [ ] | E6-3 | Portas de entrada (candidatura direta, liderança de entidade, cargo de confiança, sucessão, chamado em crise) | P0 | L |
-| [ ] | E6-4 | Conversão de prestígio e rede em recursos políticos por origem e porta | P0 | M |
+| [x] | E6-1 | Fase 0 no pipeline: estado `civil`, turnos civis e transição para política | P0 | L |
+| [x] | E6-2 | Regras de entrada: idade mínima, filiação, prazo e janela eleitoral | P0 | M |
+| [x] | E6-3 | Portas de entrada (candidatura direta, liderança de entidade, cargo de confiança, sucessão, chamado em crise) | P0 | L |
+| [x] | E6-4 | Conversão de prestígio e rede em recursos políticos por origem e porta | P0 | M |
 | [ ] | E6-8 | Efeitos das âncoras históricas por origem | P1 | M |
 | [x] | E6-9 | Disponibilidade de origens por época (`availableFrom/Until`) | P1 | S |
 | [ ] | E6-11 | Fidelidade à origem na avaliação final e novos arquétipos | P1 | M |

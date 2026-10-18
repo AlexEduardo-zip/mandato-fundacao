@@ -30,6 +30,16 @@ export function checkCandidacy(
   if (player.age < cfg.minAge) return { ok: false, reason: "too young" };
 
   if (player.career.highestRank === 0) {
+    const { plannedOffice, windowYear, joinedPartyYear } = player.civil;
+    if (joinedPartyYear === null || joinedPartyYear >= player.year) {
+      return { ok: false, reason: "not affiliated in time" };
+    }
+    if (plannedOffice !== null && office !== plannedOffice) {
+      return { ok: false, reason: "not the office of the entry door" };
+    }
+    if (windowYear !== null && player.year < windowYear) {
+      return { ok: false, reason: "window not open" };
+    }
     if (!rules.entryOffices.includes(office)) return { ok: false, reason: "not an entry office" };
   } else if (cfg.rank > player.career.highestRank + rules.ladderReach) {
     return { ok: false, reason: "too high on the ladder" };

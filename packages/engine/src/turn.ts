@@ -1,6 +1,7 @@
 import { evaluateCondition } from "./conditions.js";
 import { defaultConfig, type EngineConfig } from "./config.js";
 import { expireMandate } from "./career.js";
+import { closeCivilYear } from "./civil.js";
 import { applyEffects, takeDueScheduled } from "./effects.js";
 import { Rng } from "./rng.js";
 import { selectEvents } from "./select.js";
@@ -62,6 +63,7 @@ export function startTurn(
   catalog: Catalog,
   config: EngineConfig = defaultConfig,
 ): GameState {
+  if (state.ended) throw new Error("the run is over");
   if (state.turnOpen) throw new Error("turn already open");
   let next: GameState = { ...state, turnOpen: true };
   next = applyAnchors(next, catalog, config);
@@ -78,7 +80,7 @@ export function startTurn(
 export function endTurn(state: GameState, config: EngineConfig = defaultConfig): GameState {
   if (!state.turnOpen) throw new Error("no open turn");
   if (state.pending.length > 0) throw new Error("decisions still pending");
-  const closed = expireMandate(state, config);
+  const closed = closeCivilYear(expireMandate(state, config), config);
   return {
     ...closed,
     turnOpen: false,
