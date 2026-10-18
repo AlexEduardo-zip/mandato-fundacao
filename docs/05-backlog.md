@@ -27,7 +27,7 @@ O backlog tem duas trilhas (ADR-008):
 | [x] | E0-2 | Vitest nos pacotes | P0 | S |
 | [x] | E0-3 | CI no GitHub Actions (lint, typecheck, test, build) | P0 | S |
 | [x] | E0-4 | Scaffold dos pacotes `engine`, `content`, `tools`, `cli` e placeholder de `apps/web` | P0 | S |
-| [ ] | E0-5 | Convenções: commits por história, `decisions-log.md`, `HUMAN_REVIEW.md`, CONTRIBUTING | P1 | S |
+| [x] | E0-5 | Convenções: commits por história, `decisions-log.md`, `HUMAN_REVIEW.md`, CONTRIBUTING | P1 | S |
 
 ## E1 · Engine (M1)
 | ✔ | ID | História | Prior. | Tam. |

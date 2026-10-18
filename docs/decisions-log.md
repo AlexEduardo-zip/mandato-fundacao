@@ -5,3 +5,7 @@ Parâmetros iniciais estão em `09-parametros-v0.md`; aqui entra só o que mudar
 
 | Data | Decisão | Motivo |
 |---|---|---|
+| 2026-10-18 | TypeScript 5.9, ESLint 9 (flat config), Vitest 3, Node 22 no CI | Versões estáveis e amplamente suportadas; TS 7 e ESLint 10 ainda recentes demais |
+| 2026-10-18 | Pacotes ESM com `tsc -b` e project references; typecheck e build rodam por pacote | Evita tsconfig raiz e garante ordem de build entre pacotes |
+| 2026-10-18 | Vitest resolve `@mandato/*` por alias para `src` (`vitest.shared.ts`) | Testes não dependem de build prévio |
+| 2026-10-18 | `docs/` fora do Prettier | Docs são texto editorial, formatação automática geraria ruído |
