@@ -42,7 +42,7 @@ O backlog tem duas trilhas (ADR-008):
 | [x] | E1-8 | Modelo de eleição v0 e adversários gerados | P0 | L |
 | [x] | E1-9 | Escada de cargos, mandatos, reeleição e cargos paralelos | P0 | M |
 | [x] | E1-10 | Avaliador final: dimensões, arquétipo, nível de legado | P0 | L |
-| [ ] | E1-11 | Replay a partir de `{seed, decisions}` e migração de save | P0 | M |
+| [x] | E1-11 | Replay a partir de `{seed, decisions}` e migração de save | P0 | M |
 | [ ] | E1-12 | Gerador de manchetes e resumo anual (templates) | P1 | M |
 | [ ] | E1-13 | CLI de simulação em lote com relatório (arquétipos, chegada a cada cargo, eventos nunca disparados) | P1 | M |
 | [ ] | E1-14 | Testes de propriedade (faixas, determinismo, nenhum estado inválido) | P1 | M |
