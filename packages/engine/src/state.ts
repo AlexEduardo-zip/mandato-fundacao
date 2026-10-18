@@ -45,6 +45,12 @@ export function createGameState(
     originId: input.originId,
     civil: { prestige: input.prestige ?? 0, network: input.network ?? 0, entryDoorsOpen: [] },
     office: input.office ?? null,
+    career: {
+      termStartYear: input.office ? (input.year ?? config.startYear) : null,
+      consecutiveTerms: input.office ? 1 : 0,
+      highestRank: input.office ? (config.offices[input.office]?.rank ?? 0) : 0,
+      parallel: [],
+    },
     party: input.party,
     attributes,
     resources,

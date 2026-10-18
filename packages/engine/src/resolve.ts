@@ -83,5 +83,5 @@ export function playTurn(
     if (choices.length === 0) throw new Error(`no available choice for event ${event.id}`);
     next = decide(next, catalog, choose(event, choices, next), config);
   }
-  return endTurn(next);
+  return endTurn(next, config);
 }

@@ -59,6 +59,17 @@ export interface HistoryEntry {
   votePct?: number;
 }
 
+export interface CareerState {
+  /** Year the current mandate began; null without an office. */
+  termStartYear: number | null;
+  /** Consecutive mandates in the current office. */
+  consecutiveTerms: number;
+  /** Highest ladder rank ever held (0 = none). */
+  highestRank: number;
+  /** Appointments held alongside the seat. */
+  parallel: OfficeId[];
+}
+
 export interface PlayerState {
   year: number;
   age: number;
@@ -66,6 +77,7 @@ export interface PlayerState {
   originId: OriginId;
   civil: { prestige: number; network: number; entryDoorsOpen: EntryDoorId[] };
   office: OfficeId | null;
+  career: CareerState;
   party: PartyId;
   attributes: Record<AttrId, number>;
   resources: Record<ResourceId, number>;

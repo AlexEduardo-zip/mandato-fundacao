@@ -65,7 +65,15 @@ export function applyEffect(
     return { ...state, player: { ...player, scheduled: [...player.scheduled, entry] } };
   }
   if ("setOffice" in effect) {
-    return { ...state, player: { ...player, office: effect.setOffice } };
+    const rank = config.offices[effect.setOffice]?.rank ?? 0;
+    const same = player.office === effect.setOffice;
+    const career = {
+      ...player.career,
+      termStartYear: same ? player.career.termStartYear : player.year,
+      consecutiveTerms: same ? player.career.consecutiveTerms : 1,
+      highestRank: Math.max(player.career.highestRank, rank),
+    };
+    return { ...state, player: { ...player, office: effect.setOffice, career } };
   }
   if ("headline" in effect) {
     return pushHistory(state, { year: player.year, kind: "headline", text: effect.headline });

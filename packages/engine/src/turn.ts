@@ -1,5 +1,6 @@
 import { evaluateCondition } from "./conditions.js";
 import { defaultConfig, type EngineConfig } from "./config.js";
+import { expireMandate } from "./career.js";
 import { applyEffects, takeDueScheduled } from "./effects.js";
 import { Rng } from "./rng.js";
 import { selectEvents } from "./select.js";
@@ -74,12 +75,13 @@ export function startTurn(
 }
 
 /** Closes the year: advances the calendar and age. All pending decisions must be resolved. */
-export function endTurn(state: GameState): GameState {
+export function endTurn(state: GameState, config: EngineConfig = defaultConfig): GameState {
   if (!state.turnOpen) throw new Error("no open turn");
   if (state.pending.length > 0) throw new Error("decisions still pending");
+  const closed = expireMandate(state, config);
   return {
-    ...state,
+    ...closed,
     turnOpen: false,
-    player: { ...state.player, year: state.player.year + 1, age: state.player.age + 1 },
+    player: { ...closed.player, year: closed.player.year + 1, age: closed.player.age + 1 },
   };
 }
