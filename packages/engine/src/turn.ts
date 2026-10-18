@@ -2,6 +2,7 @@ import { evaluateCondition } from "./conditions.js";
 import { defaultConfig, type EngineConfig } from "./config.js";
 import { applyEffects, takeDueScheduled } from "./effects.js";
 import { Rng } from "./rng.js";
+import { selectEvents } from "./select.js";
 import type { Catalog, GameEvent, GameState } from "./types.js";
 
 export function getEvent(catalog: Catalog, id: string): GameEvent {
@@ -52,7 +53,7 @@ function runScheduled(state: GameState, catalog: Catalog, config: EngineConfig):
 }
 
 /**
- * Opens the year: world anchors, due consequences, then (E1-6) random career events.
+ * Opens the year: world anchors, due consequences, then random career events.
  * Afterwards `pending` lists the events that wait for a decision.
  */
 export function startTurn(
@@ -64,6 +65,11 @@ export function startTurn(
   let next: GameState = { ...state, turnOpen: true };
   next = applyAnchors(next, catalog, config);
   next = runScheduled(next, catalog, config);
+  const drawn = selectEvents(next, catalog, config);
+  next = drawn.events.reduce((acc, event) => fireEvent(acc, event, config), {
+    ...next,
+    rng: drawn.rng,
+  });
   return next;
 }
 

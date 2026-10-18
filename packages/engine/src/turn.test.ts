@@ -27,7 +27,10 @@ describe("startTurn", () => {
   });
 
   it("fires due scheduled events and drops them from the agenda", () => {
-    const consequence = makeEvent("ev_cons", { effects: [{ add: "money", value: 5 }] });
+    const consequence = makeEvent("ev_cons", {
+      scheduledOnly: true,
+      effects: [{ add: "money", value: 5 }],
+    });
     const catalog: Catalog = { events: [consequence] };
     let s = makeState({ year: 1990 });
     s = { ...s, player: { ...s.player, scheduled: [{ eventId: "ev_cons", dueYear: 1990 }] } };
@@ -40,13 +43,16 @@ describe("startTurn", () => {
   it("keeps future scheduled events untouched", () => {
     let s = makeState({ year: 1990 });
     s = { ...s, player: { ...s.player, scheduled: [{ eventId: "ev_cons", dueYear: 1992 }] } };
-    const next = startTurn(s, { events: [makeEvent("ev_cons")] });
+    const next = startTurn(s, { events: [makeEvent("ev_cons", { scheduledOnly: true })] });
     expect(next.player.scheduled).toHaveLength(1);
     expect(next.player.history).toEqual([]);
   });
 
   it("rolls the chance of a scheduled event deterministically", () => {
-    const consequence = makeEvent("ev_cons", { effects: [{ addTag: "fired" }] });
+    const consequence = makeEvent("ev_cons", {
+      scheduledOnly: true,
+      effects: [{ addTag: "fired" }],
+    });
     const run = (seed: string) => {
       let s = makeState({ year: 1990, seed });
       s = {
@@ -67,7 +73,10 @@ describe("startTurn", () => {
   });
 
   it("never fires chance 0 and always fires chance 1", () => {
-    const consequence = makeEvent("ev_cons", { effects: [{ addTag: "fired" }] });
+    const consequence = makeEvent("ev_cons", {
+      scheduledOnly: true,
+      effects: [{ addTag: "fired" }],
+    });
     const make = (chance: number) => {
       const s = makeState({ year: 1990 });
       return startTurn(
@@ -84,6 +93,7 @@ describe("startTurn", () => {
 
   it("queues events that have choices", () => {
     const withChoice = makeEvent("ev_choice", {
+      scheduledOnly: true,
       choices: [{ id: "c1", label: "ok", outcomes: [{ chance: 1, text: "t", effects: [] }] }],
     });
     let s = makeState({ year: 1990 });
