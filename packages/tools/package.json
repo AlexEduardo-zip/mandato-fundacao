@@ -14,7 +14,8 @@
   "scripts": {
     "build": "tsc -b",
     "typecheck": "tsc -b",
-    "test": "vitest run"
+    "test": "vitest run",
+    "simulate": "node dist/cli.js"
   },
   "dependencies": {
     "@mandato/engine": "workspace:*",
