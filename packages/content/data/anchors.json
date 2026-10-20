@@ -1,0 +1,306 @@
+[
+  {
+    "id": "ev_anchor_1988_constituicao",
+    "kind": "anchor",
+    "title": "Promulgação da nova Constituição",
+    "text": "Depois de quase dois anos de trabalho, a Assembleia Nacional Constituinte promulga a nova Constituição. O texto amplia direitos, restabelece eleições diretas e redistribui poderes entre União, estados e municípios. O país respira uma mistura de euforia e cobrança: cada categoria quer ver suas conquistas transformadas em lei, e quem entra na política agora sabe que as regras do jogo acabaram de mudar.",
+    "status": "rascunho",
+    "tags": ["ancora", "institucional"],
+    "anchorYear": 1988,
+    "date": "1988-10-05",
+    "sources": [
+      {
+        "label": "Constituição da República Federativa do Brasil de 1988 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+      }
+    ],
+    "worldEffects": [
+      { "addWorld": "mood", "value": 8 },
+      { "addWorld": "oversight", "value": 5 }
+    ]
+  },
+  {
+    "id": "ev_anchor_1989_eleicao_presidencial",
+    "kind": "anchor",
+    "title": "Primeira eleição presidencial direta em quase três décadas",
+    "text": "Os eleitores voltam às urnas para escolher o presidente da República pela primeira vez em décadas. A campanha é longa, barulhenta e dominada pela televisão, com dezenas de candidatos e debates acalorados. O segundo turno divide o país em dois campos bem definidos, e a política passa a ser assunto de mesa de bar, de sala de aula e de assembleia.",
+    "status": "rascunho",
+    "tags": ["ancora", "eleicao"],
+    "anchorYear": 1989,
+    "date": "1989-11-15",
+    "sources": [
+      { "label": "Tribunal Superior Eleitoral: eleições presidenciais, histórico (1989)" }
+    ],
+    "worldEffects": [
+      { "addWorld": "polarization", "value": 8 },
+      { "addWorld": "mediaPressure", "value": 8 }
+    ]
+  },
+  {
+    "id": "ev_anchor_1990_plano_bloqueio",
+    "kind": "anchor",
+    "title": "Plano econômico com bloqueio de ativos",
+    "text": "O novo governo federal lança um plano de estabilização que bloqueia por período determinado parte dos depósitos e aplicações financeiras de empresas e famílias. A inflação cai de imediato, mas o dinheiro some do bolso de quem esperava usá-lo. Comércio vazio, fábricas paradas e filas nos bancos criam um ano de incerteza que atravessa todas as profissões.",
+    "status": "rascunho",
+    "tags": ["ancora", "economia"],
+    "anchorYear": 1990,
+    "date": "1990-03-16",
+    "sources": [
+      {
+        "label": "Lei nº 8.024, de 12 de abril de 1990 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8024.htm"
+      }
+    ],
+    "worldEffects": [
+      { "addWorld": "economy", "value": -12 },
+      { "addWorld": "mood", "value": -10 }
+    ]
+  },
+  {
+    "id": "ev_anchor_1992_impeachment",
+    "kind": "anchor",
+    "title": "Impeachment do presidente da República",
+    "text": "Após uma investigação do Congresso sobre irregularidades no Executivo e de grandes manifestações de rua, a Câmara autoriza o processo e o Senado julga o presidente. O mandato termina antes do prazo, com o vice assumindo o cargo. As instituições mostram que conseguem funcionar sob pressão, mas o clima no país fica pesado e desconfiado.",
+    "status": "rascunho",
+    "tags": ["ancora", "institucional", "crise"],
+    "anchorYear": 1992,
+    "date": "1992-12-29",
+    "sources": [
+      { "label": "Senado Federal: processo de impeachment de 1992, resolução do julgamento" }
+    ],
+    "worldEffects": [
+      { "addWorld": "oversight", "value": 8 },
+      { "addWorld": "mood", "value": -6 }
+    ]
+  },
+  {
+    "id": "ev_anchor_1994_plano_estabilizacao",
+    "kind": "anchor",
+    "title": "Plano de estabilização monetária",
+    "text": "Uma nova moeda entra em circulação depois de meses de preparação, ancorada em uma unidade de conta que acaba com a correção diária dos preços. A inflação, que corroía salários todos os meses, desaba. O poder de compra de quem vive de renda fixa melhora e o otimismo volta às feiras, às fábricas e às campanhas eleitorais do ano.",
+    "status": "rascunho",
+    "tags": ["ancora", "economia"],
+    "anchorYear": 1994,
+    "date": "1994-07-01",
+    "sources": [
+      {
+        "label": "Lei nº 8.880, de 27 de maio de 1994 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8880.htm"
+      }
+    ],
+    "worldEffects": [
+      { "addWorld": "economy", "value": 12 },
+      { "addWorld": "mood", "value": 10 }
+    ]
+  },
+  {
+    "id": "ev_anchor_1997_emenda_reeleicao",
+    "kind": "anchor",
+    "title": "Emenda permite a reeleição para cargos do Executivo",
+    "text": "O Congresso aprova uma emenda constitucional que permite a prefeitos, governadores e ao presidente disputar um segundo mandato consecutivo. Quem governa passa a pensar em dois ciclos, e a máquina pública vira ativo de campanha. Aliados se organizam em torno de quem já está no poder, e a oposição reclama de vantagem desigual na disputa.",
+    "status": "rascunho",
+    "tags": ["ancora", "institucional", "eleicao"],
+    "anchorYear": 1997,
+    "date": "1997-06-04",
+    "sources": [
+      {
+        "label": "Emenda Constitucional nº 16, de 4 de junho de 1997 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc16.htm"
+      }
+    ],
+    "worldEffects": [{ "addWorld": "congressFragmentation", "value": -5 }]
+  },
+  {
+    "id": "ev_anchor_1999_cambio",
+    "kind": "anchor",
+    "title": "Mudança no regime cambial",
+    "text": "Depois de meses de pressão sobre as reservas, o governo abandona a banda em que o câmbio era mantido e deixa a moeda flutuar. O dólar dispara em poucos dias e os juros sobem para conter a fuga de capital. Quem tem dívida em moeda estrangeira sente o baque, e o ano começa com contas apertadas e muita cautela nos gabinetes.",
+    "status": "rascunho",
+    "tags": ["ancora", "economia"],
+    "anchorYear": 1999,
+    "date": "1999-01-15",
+    "sources": [
+      { "label": "Banco Central do Brasil: adoção do regime de câmbio flutuante, janeiro de 1999" }
+    ],
+    "worldEffects": [{ "addWorld": "economy", "value": -8 }]
+  },
+  {
+    "id": "ev_anchor_2002_alternancia",
+    "kind": "anchor",
+    "title": "Alternância de poder no Executivo federal",
+    "text": "As urnas levam à presidência um candidato de oposição, depois de várias derrotas anteriores, e a faixa é passada de forma pacífica a um grupo político de outro campo. Para muitos eleitores, é a prova de que a democracia funciona; para outros, motivo de apreensão com o mercado. A expectativa social cresce, e a disputa de narrativas também.",
+    "status": "rascunho",
+    "tags": ["ancora", "eleicao"],
+    "anchorYear": 2002,
+    "date": "2002-10-27",
+    "sources": [
+      {
+        "label": "Tribunal Superior Eleitoral: eleições gerais de 2002, resultado do segundo turno"
+      }
+    ],
+    "worldEffects": [
+      { "addWorld": "polarization", "value": 8 },
+      { "addWorld": "mood", "value": 5 }
+    ]
+  },
+  {
+    "id": "ev_anchor_2005_compra_apoio",
+    "kind": "anchor",
+    "title": "Escândalo de compra de apoio parlamentar",
+    "text": "Uma denúncia de pagamentos mensais a parlamentares em troca de votos no Congresso toma conta dos jornais e das comissões de inquérito. Ministros caem, lideranças são investigadas e o debate sobre financiamento de campanha ganha as ruas. A imprensa vasculha cada gabinete, e quem tem esqueletos no armário passa a dormir pior.",
+    "status": "rascunho",
+    "tags": ["ancora", "corrupcao", "crise"],
+    "anchorYear": 2005,
+    "date": "2005-06-06",
+    "sources": [
+      { "label": "Supremo Tribunal Federal: Ação Penal 470, processo e julgamento" },
+      { "label": "Câmara dos Deputados: comissões parlamentares de inquérito de 2005" }
+    ],
+    "worldEffects": [
+      { "addWorld": "mediaPressure", "value": 8 },
+      { "addWorld": "oversight", "value": 8 },
+      { "addWorld": "mood", "value": -8 }
+    ]
+  },
+  {
+    "id": "ev_anchor_2008_crise_global",
+    "kind": "anchor",
+    "title": "Crise financeira global",
+    "text": "A quebra de um grande banco de investimentos nos Estados Unidos espalha pânico pelos mercados do mundo. O crédito encolhe, as exportações caem e a moeda perde valor. O país reage com medidas de estímulo e corta impostos de alguns setores, mas empresas adiam investimentos e o trabalhador passa a olhar o emprego com mais cuidado.",
+    "status": "rascunho",
+    "tags": ["ancora", "economia"],
+    "anchorYear": 2008,
+    "date": "2008-09-15",
+    "sources": [{ "label": "Banco Central do Brasil: Relatório de Inflação, dezembro de 2008" }],
+    "worldEffects": [{ "addWorld": "economy", "value": -12 }]
+  },
+  {
+    "id": "ev_anchor_2013_protestos",
+    "kind": "anchor",
+    "title": "Protestos de rua em massa",
+    "text": "Um reajuste de passagens de ônibus acende manifestações que, em poucas semanas, reúnem milhares de pessoas em dezenas de cidades. As pautas se multiplicam: transporte, saúde, educação, gastos públicos, representação política. Ninguém sabe ao certo quem lidera, e os partidos tentam entender a mensagem. Quem tem microfone e quem tem rede social ganha, de repente, mais peso.",
+    "status": "rascunho",
+    "tags": ["ancora", "mobilizacao"],
+    "anchorYear": 2013,
+    "date": "2013-06-17",
+    "sources": [
+      { "label": "Cobertura jornalística e registros públicos das manifestações de junho de 2013" }
+    ],
+    "worldEffects": [
+      { "addWorld": "mood", "value": -8 },
+      { "addWorld": "mediaPressure", "value": 8 },
+      { "addWorld": "polarization", "value": 4 }
+    ]
+  },
+  {
+    "id": "ev_anchor_2014_operacao_anticorrupcao",
+    "kind": "anchor",
+    "title": "Operação anticorrupção de grande escala",
+    "text": "Uma investigação iniciada na Polícia Federal sobre lavagem de dinheiro se expande e alcança contratos de grandes empresas públicas, empreiteiras e agentes políticos de vários partidos. Prisões, delações e acordos viram rotina do noticiário. A fiscalização aperta, as alianças tradicionais se desfazem e o Congresso passa a negociar sob a sombra das investigações.",
+    "status": "rascunho",
+    "tags": ["ancora", "corrupcao", "instituicoes"],
+    "anchorYear": 2014,
+    "date": "2014-03-17",
+    "sources": [
+      {
+        "label": "Polícia Federal e Ministério Público Federal: primeira fase da operação, março de 2014"
+      }
+    ],
+    "worldEffects": [
+      { "addWorld": "oversight", "value": 10 },
+      { "addWorld": "congressFragmentation", "value": 6 }
+    ]
+  },
+  {
+    "id": "ev_anchor_2016_impeachment",
+    "kind": "anchor",
+    "title": "Novo impeachment presidencial",
+    "text": "Acusada de irregularidades nas contas públicas, a presidente da República enfrenta um processo que atravessa a Câmara e o Senado em meio a protestos de apoiadores e adversários. O mandato termina antes do fim e o vice assume. O país se divide sobre se houve regra cumprida ou ruptura, e a governabilidade fica mais difícil para todos.",
+    "status": "rascunho",
+    "tags": ["ancora", "institucional", "crise"],
+    "anchorYear": 2016,
+    "date": "2016-08-31",
+    "sources": [
+      { "label": "Senado Federal: processo de impeachment de 2016, sessão final de julgamento" }
+    ],
+    "worldEffects": [
+      { "addWorld": "polarization", "value": 10 },
+      { "addWorld": "congressFragmentation", "value": 6 }
+    ]
+  },
+  {
+    "id": "ev_anchor_2018_ruptura_partidaria",
+    "kind": "anchor",
+    "title": "Eleição com ruptura do sistema partidário",
+    "text": "A eleição geral reorganiza o mapa político: partidos tradicionais perdem espaço, candidatos de fora do establishment ganham força e as redes sociais substituem o horário de propaganda como principal palanque. Mensagens curtas, vídeos e correntes de mensagem decidem debates. Quem domina a comunicação digital leva vantagem, e a campanha vira disputa permanente.",
+    "status": "rascunho",
+    "tags": ["ancora", "eleicao", "midia"],
+    "anchorYear": 2018,
+    "date": "2018-10-28",
+    "sources": [{ "label": "Tribunal Superior Eleitoral: eleições gerais de 2018, resultados" }],
+    "worldEffects": [
+      { "addWorld": "polarization", "value": 10 },
+      { "addWorld": "mediaPressure", "value": 6 },
+      { "addWorld": "congressFragmentation", "value": 6 }
+    ]
+  },
+  {
+    "id": "ev_anchor_2020_pandemia",
+    "kind": "anchor",
+    "title": "Pandemia de doença respiratória",
+    "text": "Um vírus novo se espalha pelo mundo e chega ao país. Escolas fecham, o comércio para, hospitais lotam e a população precisa decidir entre isolamento e sustento. Governos de todos os níveis ganham a obrigação de responder rápido, com poucos dados e muita cobrança. A gestão pública vira tema diário, e cada decisão tem um custo visível.",
+    "status": "rascunho",
+    "tags": ["ancora", "saude", "economia"],
+    "anchorYear": 2020,
+    "date": "2020-03-11",
+    "sources": [
+      {
+        "label": "Lei nº 13.979, de 6 de fevereiro de 2020 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l13979.htm"
+      },
+      {
+        "label": "Organização Mundial da Saúde: caracterização da covid-19 como pandemia, 11/03/2020"
+      }
+    ],
+    "worldEffects": [
+      { "addWorld": "economy", "value": -12 },
+      { "addWorld": "mood", "value": -6 },
+      { "addWorld": "mediaPressure", "value": 4 }
+    ]
+  },
+  {
+    "id": "ev_anchor_2022_eleicao_acirrada",
+    "kind": "anchor",
+    "title": "Eleição presidencial acirrada",
+    "text": "A disputa pela presidência termina no segundo turno com uma diferença pequena de votos. A campanha foi marcada por ataques, desinformação e desconfiança com o sistema de votação, e o clima de mobilização continua após a apuração. Famílias e grupos de amigos se afastam, e quem faz política precisa lidar com um eleitor mais radicalizado.",
+    "status": "rascunho",
+    "tags": ["ancora", "eleicao"],
+    "anchorYear": 2022,
+    "date": "2022-10-30",
+    "sources": [
+      {
+        "label": "Tribunal Superior Eleitoral: eleições gerais de 2022, resultado do segundo turno"
+      }
+    ],
+    "worldEffects": [{ "addWorld": "polarization", "value": 8 }]
+  },
+  {
+    "id": "ev_anchor_2023_ataques_poderes",
+    "kind": "anchor",
+    "title": "Ataques às sedes dos Poderes",
+    "text": "Manifestantes invadem e depredam as sedes dos três Poderes em Brasília, em protesto contra o resultado da eleição. As imagens rodam o mundo em minutos. Forças de segurança retomam os prédios, centenas de pessoas são detidas e as investigações alcançam organizadores e financiadores. As instituições reagem e a cobrança por responsabilização cresce.",
+    "status": "rascunho",
+    "tags": ["ancora", "institucional", "crise"],
+    "anchorYear": 2023,
+    "date": "2023-01-08",
+    "sources": [
+      {
+        "label": "Supremo Tribunal Federal: inquéritos e ações penais sobre os atos de 8 de janeiro de 2023"
+      }
+    ],
+    "worldEffects": [
+      { "addWorld": "oversight", "value": 8 },
+      { "addWorld": "polarization", "value": 6 }
+    ]
+  }
+]

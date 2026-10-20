@@ -14,9 +14,11 @@
   "scripts": {
     "build": "tsc -b",
     "typecheck": "tsc -b",
-    "test": "vitest run"
+    "test": "vitest run",
+    "validate": "node dist/cli.js"
   },
   "dependencies": {
-    "@mandato/engine": "workspace:*"
+    "@mandato/engine": "workspace:*",
+    "zod": "^4.6.7"
   }
 }

@@ -1,0 +1,78 @@
+{
+  "blocs": [
+    {
+      "id": "blk_popular",
+      "name": "Bloco Popular",
+      "status": "rascunho",
+      "description": "Partidos ligados a movimentos sociais, sindicatos e associações de base."
+    },
+    {
+      "id": "blk_mercado",
+      "name": "Bloco da Ordem e do Mercado",
+      "status": "rascunho",
+      "description": "Partidos que defendem estabilidade, iniciativa privada e segurança."
+    },
+    {
+      "id": "blk_centro",
+      "name": "Bloco do Centro",
+      "status": "rascunho",
+      "description": "Partidos de composição, que negociam apoio com quem governa."
+    }
+  ],
+  "parties": [
+    {
+      "id": "par_pdp",
+      "acronym": "PDP",
+      "name": "Partido Democrático Popular",
+      "status": "rascunho",
+      "blocId": "blk_popular",
+      "leaning": { "economic": -1, "social": 1 },
+      "description": "Partido de massas, forte em sindicatos e periferias, com discurso de ampliação de direitos."
+    },
+    {
+      "id": "par_apn",
+      "acronym": "APN",
+      "name": "Aliança Progressista Nacional",
+      "status": "rascunho",
+      "blocId": "blk_centro",
+      "leaning": { "economic": 0, "social": 1 },
+      "description": "Aliança de quadros técnicos e universitários, defensora de reformas graduais."
+    },
+    {
+      "id": "par_mtt",
+      "acronym": "MTT",
+      "name": "Movimento Trabalho e Terra",
+      "status": "rascunho",
+      "blocId": "blk_popular",
+      "leaning": { "economic": -2, "social": 0 },
+      "description": "Movimento que reúne trabalhadores do campo e da cidade em torno de terra, salário e moradia."
+    },
+    {
+      "id": "par_pom",
+      "acronym": "POM",
+      "name": "Partido da Ordem e Mercado",
+      "status": "rascunho",
+      "blocId": "blk_mercado",
+      "leaning": { "economic": 2, "social": -1 },
+      "description": "Partido de empresários e profissionais liberais, com pauta de segurança e redução do Estado."
+    },
+    {
+      "id": "par_fc",
+      "acronym": "FC",
+      "name": "Frente Cidadã",
+      "status": "rascunho",
+      "blocId": "blk_centro",
+      "leaning": { "economic": 0, "social": 0 },
+      "description": "Frente de associações de bairro e ex-candidatos independentes, com foco em serviços locais."
+    },
+    {
+      "id": "par_cf",
+      "acronym": "CF",
+      "name": "Centro Federativo",
+      "status": "rascunho",
+      "blocId": "blk_centro",
+      "leaning": { "economic": 1, "social": 0 },
+      "description": "Partido de prefeitos e lideranças regionais, pragmático e atento ao orçamento."
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+[
+  {
+    "id": "ori_sindicalista",
+    "label": "Sindicalista",
+    "availableFrom": 1988,
+    "ageRange": [25, 40],
+    "attributeMods": {
+      "articulation": 8,
+      "oratory": 2,
+      "electoralStrategy": -4
+    },
+    "startingResources": {
+      "base": 25,
+      "money": 5,
+      "media": 5
+    },
+    "civilPrestige": 30,
+    "civilNetwork": 35,
+    "conversion": {
+      "toBase": 1.2,
+      "toCapital": 0.9,
+      "toMoney": 0.6
+    },
+    "naturalDoors": ["lideranca_entidade", "candidatura_direta"],
+    "status": "rascunho",
+    "strengths": ["Articulação", "Base organizada"],
+    "weaknesses": ["Dinheiro", "Mídia"],
+    "eventTags": ["sindicato", "greve"]
+  },
+  {
+    "id": "ori_professor",
+    "label": "Professor",
+    "availableFrom": 1988,
+    "ageRange": [25, 40],
+    "attributeMods": {
+      "oratory": 6,
+      "integrity": 4,
+      "electoralStrategy": -6
+    },
+    "startingResources": {
+      "base": 15,
+      "money": 5,
+      "media": 8
+    },
+    "civilPrestige": 35,
+    "civilNetwork": 25,
+    "conversion": {
+      "toBase": 1,
+      "toCapital": 0.9,
+      "toMoney": 0.6
+    },
+    "naturalDoors": ["lideranca_entidade", "chamado_crise"],
+    "status": "rascunho",
+    "strengths": ["Credibilidade", "Base local"],
+    "weaknesses": ["Dinheiro", "Estratégia eleitoral"],
+    "eventTags": ["escola", "educacao"]
+  },
+  {
+    "id": "ori_trabalhador_rural",
+    "label": "Trabalhador rural",
+    "availableFrom": 1988,
+    "ageRange": [20, 40],
+    "attributeMods": {
+      "resilience": 6,
+      "articulation": 4,
+      "pragmatism": -2
+    },
+    "startingResources": {
+      "base": 20,
+      "money": 3,
+      "media": 3
+    },
+    "civilPrestige": 25,
+    "civilNetwork": 30,
+    "conversion": {
+      "toBase": 1.1,
+      "toCapital": 0.8,
+      "toMoney": 0.6
+    },
+    "naturalDoors": ["lideranca_entidade", "sucessao"],
+    "status": "rascunho",
+    "strengths": ["Base coesa em cooperativa ou associação"],
+    "weaknesses": ["Mídia", "Dinheiro"],
+    "eventTags": ["campo", "terra"]
+  },
+  {
+    "id": "ori_empresario",
+    "label": "Empresário",
+    "availableFrom": 1988,
+    "ageRange": [28, 45],
+    "attributeMods": {
+      "management": 6,
+      "pragmatism": 6,
+      "integrity": -4
+    },
+    "startingResources": {
+      "money": 40,
+      "capital": 15,
+      "base": 5,
+      "media": 10
+    },
+    "civilPrestige": 30,
+    "civilNetwork": 35,
+    "conversion": {
+      "toBase": 0.6,
+      "toCapital": 1,
+      "toMoney": 1.2
+    },
+    "naturalDoors": ["candidatura_direta", "cargo_confianca"],
+    "status": "rascunho",
+    "strengths": ["Dinheiro", "Rede econômica"],
+    "weaknesses": ["Base popular", "Imagem"],
+    "eventTags": ["empresa", "mercado"]
+  },
+  {
+    "id": "ori_estudante",
+    "label": "Estudante em movimento estudantil",
+    "availableFrom": 1988,
+    "ageRange": [18, 24],
+    "attributeMods": {
+      "oratory": 8,
+      "ambition": 4,
+      "management": -6
+    },
+    "startingResources": {
+      "base": 8,
+      "money": 3,
+      "media": 8
+    },
+    "civilPrestige": 20,
+    "civilNetwork": 30,
+    "conversion": {
+      "toBase": 1,
+      "toCapital": 0.7,
+      "toMoney": 0.6
+    },
+    "naturalDoors": ["cargo_confianca", "chamado_crise"],
+    "status": "rascunho",
+    "strengths": ["Oratória", "Mobilização jovem"],
+    "weaknesses": ["Dinheiro", "Gestão"],
+    "eventTags": ["movimento_estudantil", "dce"]
+  },
+  {
+    "id": "ori_lider_comunitario",
+    "label": "Líder comunitário",
+    "availableFrom": 1988,
+    "ageRange": [22, 45],
+    "attributeMods": {
+      "resilience": 4,
+      "articulation": 4,
+      "management": -2
+    },
+    "startingResources": {
+      "base": 22,
+      "money": 4,
+      "media": 4
+    },
+    "civilPrestige": 30,
+    "civilNetwork": 30,
+    "conversion": {
+      "toBase": 1.2,
+      "toCapital": 0.8,
+      "toMoney": 0.6
+    },
+    "naturalDoors": ["candidatura_direta", "chamado_crise"],
+    "status": "rascunho",
+    "strengths": ["Base territorial"],
+    "weaknesses": ["Dinheiro", "Mídia"],
+    "eventTags": ["bairro", "associacao"]
+  }
+]
