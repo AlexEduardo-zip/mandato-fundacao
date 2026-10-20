@@ -16,6 +16,8 @@ import {
   type CharacterInput,
   type Decision,
   type EngineConfig,
+  type GameState,
+  type SaveGame,
   type Session,
   type Verdict,
 } from "@mandato/engine";
@@ -31,6 +33,8 @@ export interface RunSummary {
   verdict: Verdict;
   firedEvents: string[];
   years: number;
+  state: GameState;
+  save: SaveGame;
 }
 
 export interface SimulationOptions {
@@ -40,6 +44,8 @@ export interface SimulationOptions {
   doorChance?: number;
   /** Safety bound on simulated years. */
   maxYears?: number;
+  /** Called with the state after every recorded decision (for invariant checks). */
+  onState?: (state: GameState) => void;
 }
 
 function randomCharacter(rng: Rng, config: EngineConfig): CharacterInput {
@@ -84,6 +90,7 @@ export function simulateRun(
   );
   const record = (d: Decision) => {
     session = act(session, catalog, d, config);
+    options.onState?.(session.state);
   };
   const fired = new Set<string>();
 
@@ -135,6 +142,8 @@ export function simulateRun(
     verdict,
     firedEvents: [...fired],
     years: state.player.year - config.startYear,
+    state,
+    save: session.save,
   };
 }
 

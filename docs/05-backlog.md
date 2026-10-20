@@ -45,7 +45,7 @@ O backlog tem duas trilhas (ADR-008):
 | [x] | E1-11 | Replay a partir de `{seed, decisions}` e migração de save | P0 | M |
 | [x] | E1-12 | Gerador de manchetes e resumo anual (templates) | P1 | M |
 | [x] | E1-13 | CLI de simulação em lote com relatório (arquétipos, chegada a cada cargo, eventos nunca disparados) | P1 | M |
-| [ ] | E1-14 | Testes de propriedade (faixas, determinismo, nenhum estado inválido) | P1 | M |
+| [x] | E1-14 | Testes de propriedade (faixas, determinismo, nenhum estado inválido) | P1 | M |
 
 ## E6 · Vida civil e origens (M1), ver doc 07
 | ✔ | ID | História | Prior. | Tam. |
