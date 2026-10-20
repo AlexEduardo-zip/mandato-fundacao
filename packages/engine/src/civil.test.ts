@@ -55,9 +55,9 @@ describe("civil turns in the pipeline", () => {
     expect(s.player.year).toBe(1991);
   });
 
-  it("offers a last chance after the 8th year, and ends the run if ignored", () => {
+  it("offers a last chance in the 8th year, and ends the run if ignored", () => {
     let s = civil();
-    for (let i = 0; i < 8; i++) s = endTurn(startTurn(s, emptyCatalog));
+    for (let i = 0; i < 7; i++) s = endTurn(startTurn(s, emptyCatalog));
     expect(s.player.civil.lastChance).toBe(true);
     expect(s.ended).toBeNull();
     s = endTurn(startTurn(s, emptyCatalog));
@@ -68,13 +68,13 @@ describe("civil turns in the pipeline", () => {
   it("declining the last chance ends the run in civil life", () => {
     let s = civil();
     expect(() => declineLastChance(s)).toThrow(/no last chance/);
-    for (let i = 0; i < 8; i++) s = endTurn(startTurn(s, emptyCatalog));
+    for (let i = 0; i < 7; i++) s = endTurn(startTurn(s, emptyCatalog));
     expect(declineLastChance(s).ended).toBe("vida_civil");
   });
 
   it("the last chance waives the requirements of the direct candidacy only", () => {
     let s = withCivil(civil({ year: 1988 }), { joinedPartyYear: 1988, prestige: 0, network: 0 });
-    for (let i = 0; i < 8; i++) s = endTurn(startTurn(s, emptyCatalog));
+    for (let i = 0; i < 7; i++) s = endTurn(startTurn(s, emptyCatalog));
     expect(checkDoor(s, "candidatura_direta").ok).toBe(true);
     expect(checkDoor(s, "lideranca_entidade").ok).toBe(false);
   });

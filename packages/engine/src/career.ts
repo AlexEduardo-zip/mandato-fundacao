@@ -28,6 +28,12 @@ export function checkCandidacy(
   if (player.tags[rules.ineligibleTag]) return { ok: false, reason: "ineligible" };
   if (!isElectionYear(office, player.year, config)) return { ok: false, reason: "no election" };
   if (player.age < cfg.minAge) return { ok: false, reason: "too young" };
+  if (player.history.some((h) => h.kind === "election" && h.year === player.year)) {
+    return { ok: false, reason: "already ran this year" };
+  }
+  if (player.office !== null && cfg.rank < officeConfig(player.office, config).rank) {
+    return { ok: false, reason: "below the current office" };
+  }
 
   if (player.career.highestRank === 0) {
     const { plannedOffice, windowYear, joinedPartyYear } = player.civil;
@@ -99,6 +105,7 @@ export function stand(
           termStartYear: player.year,
           consecutiveTerms: sameOffice ? player.career.consecutiveTerms + 1 : 1,
           highestRank: Math.max(player.career.highestRank, officeConfig(office, config).rank),
+          brokeYears: 0,
           parallel,
         },
       },
@@ -106,11 +113,24 @@ export function stand(
   };
 }
 
+/** A mandate lasts through the election year that follows its nominal term (1989 president: until 1994). */
+export function mandateLastYear(
+  office: OfficeId,
+  termStartYear: number,
+  config: EngineConfig = defaultConfig,
+): number {
+  const nominal = termStartYear + officeConfig(office, config).termYears;
+  for (let y = nominal; y < nominal + 4; y++) {
+    if (isElectionYear(office, y, config)) return y;
+  }
+  return nominal;
+}
+
 /** Ends the mandate once its last year is over, unless a reelection renewed it. */
 export function expireMandate(state: GameState, config: EngineConfig = defaultConfig): GameState {
   const { office, career, year } = state.player;
   if (office === null || career.termStartYear === null) return state;
-  if (year < career.termStartYear + officeConfig(office, config).termYears) return state;
+  if (year < mandateLastYear(office, career.termStartYear, config)) return state;
   const news = mandateEndHeadline(office, year, state.rng, config);
   const lapsed = withHeadline({ ...state, rng: news.rng }, news.text);
   return {

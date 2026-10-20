@@ -61,6 +61,7 @@ export function createGameState(
       termStartYear: input.office ? (input.year ?? config.startYear) : null,
       consecutiveTerms: input.office ? 1 : 0,
       highestRank: input.office ? (config.offices[input.office]?.rank ?? 0) : 0,
+      brokeYears: 0,
       parallel: [],
     },
     party: input.party,

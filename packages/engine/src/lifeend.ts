@@ -62,6 +62,18 @@ export function checkRemoval(state: GameState, config: EngineConfig = defaultCon
   return text ? withHeadline(removed, text) : removed;
 }
 
+/** Counts the years of a politician with no seat and nothing left to run with. */
+export function trackDefeat(state: GameState, config: EngineConfig = defaultConfig): GameState {
+  const { player } = state;
+  if (player.phase !== "politica" || state.ended) return state;
+  const { base, capital, money } = player.resources;
+  const broke =
+    player.office === null && Math.max(base, capital, money) <= config.lifeEnd.brokeResource;
+  const brokeYears = broke ? player.career.brokeYears + 1 : 0;
+  const next = { ...state, player: { ...player, career: { ...player.career, brokeYears } } };
+  return brokeYears >= config.lifeEnd.brokeYearsToEnd ? { ...next, ended: "derrota" } : next;
+}
+
 /** Closes the run when the calendar or the age forces it. Runs after the year advances. */
 export function checkForcedEnd(state: GameState, config: EngineConfig = defaultConfig): GameState {
   if (state.ended) return state;

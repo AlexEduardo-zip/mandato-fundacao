@@ -40,7 +40,8 @@ export function generateAdversaries(
 
 /** Deterministic part of the score (doc 09), before the noise. */
 export function baseScore(state: GameState, config: EngineConfig = defaultConfig): number {
-  const { weights, scandalPenalty, scandalTag, polarizationRejection } = config.election;
+  const { weights, scandalPenalty, scandalTag, scandalRiskThreshold, polarizationRejection } =
+    config.election;
   const { resources, attributes, tags } = state.player;
   const rejection =
     Math.max(0, state.world.polarization - polarizationRejection.threshold) *
@@ -52,7 +53,8 @@ export function baseScore(state: GameState, config: EngineConfig = defaultConfig
     weights.electoralStrategy * attributes.electoralStrategy +
     weights.mood * state.world.mood +
     weights.capital * resources.capital -
-    scandalPenalty * (tags[scandalTag] ?? 0) -
+    scandalPenalty *
+      ((tags[scandalTag] ?? 0) + (state.player.hidden.scandalRisk > scandalRiskThreshold ? 1 : 0)) -
     rejection
   );
 }

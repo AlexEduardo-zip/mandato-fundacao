@@ -69,7 +69,7 @@ export function createCharacter(
       seed,
       phase: "civil",
       year,
-      attributes: { ...attributes, ...input.attributes },
+      attributes,
       resources: { ...origin.startingResources, ...input.resources },
       prestige: input.prestige ?? origin.civilPrestige,
       network: input.network ?? origin.civilNetwork,

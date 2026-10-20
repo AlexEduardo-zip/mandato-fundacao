@@ -83,6 +83,8 @@ export interface CareerState {
   consecutiveTerms: number;
   /** Highest ladder rank ever held (0 = none). */
   highestRank: number;
+  /** Consecutive years out of office with no resources to run again. */
+  brokeYears: number;
   /** Appointments held alongside the seat. */
   parallel: OfficeId[];
 }
@@ -104,7 +106,7 @@ export interface PlayerState {
   history: HistoryEntry[];
 }
 
-export type EndReason = "vida_civil" | "cassado" | "aposentadoria" | "fim_da_era";
+export type EndReason = "vida_civil" | "cassado" | "aposentadoria" | "fim_da_era" | "derrota";
 
 export interface GameState {
   player: PlayerState;

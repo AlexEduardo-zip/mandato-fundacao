@@ -97,9 +97,11 @@ export function simulateRun(
   for (let year = 0; year < maxYears && !session.state.ended; year++) {
     let opened = startTurn(session.state, catalog, config);
     session = { ...session, state: opened };
+    options.onState?.(opened);
     while (opened.pending.length > 0) {
       const event = getEvent(catalog, opened.pending[0] as string);
       const choices = availableChoices(event, opened);
+      if (choices.length === 0) throw new Error(`no available choice for event ${event.id}`);
       record({ t: "choice", id: rng.pick(choices).id });
       opened = session.state;
     }

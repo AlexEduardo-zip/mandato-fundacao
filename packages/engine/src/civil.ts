@@ -70,7 +70,9 @@ export function checkDoor(
   const cfg = officeConfig(office, config);
   if (options.quickStart) return { ok: true, office };
 
-  const joined = player.civil.joinedPartyYear;
+  const joined = waived
+    ? (player.civil.joinedPartyYear ?? player.year - 1)
+    : player.civil.joinedPartyYear;
   if (joined === null) return { ok: false, reason: "not affiliated" };
   const window = firstWindow(office, player.year, joined, config);
   if (window === null) return { ok: false, reason: "no election window" };
@@ -174,7 +176,7 @@ export function closeCivilYear(state: GameState, config: EngineConfig = defaultC
     ...state,
     player: {
       ...state.player,
-      civil: { ...civil, turns, lastChance: turns >= config.civil.maxTurns },
+      civil: { ...civil, turns, lastChance: turns >= config.civil.maxTurns - 1 },
     },
   };
   return refreshDoors(counted, config);

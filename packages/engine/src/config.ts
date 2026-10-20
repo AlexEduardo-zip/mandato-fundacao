@@ -41,6 +41,8 @@ export interface ElectionConfig {
   };
   scandalPenalty: number;
   scandalTag: string;
+  /** Hidden scandal risk above this counts as one more active scandal (doc 09: opens the scandal). */
+  scandalRiskThreshold: number;
   polarizationRejection: { threshold: number; coef: number };
   noiseSigma: number;
   adversaryVariation: number;
@@ -104,6 +106,10 @@ export interface LifeEndConfig {
   retireForcedAge: number;
   /** scandalRisk above this can lead to removal from office. */
   removalScandal: number;
+  /** Out of office and with every political resource at or below this, the year counts as broke. */
+  brokeResource: number;
+  /** Broke years in a row (two election cycles) that end the run in defeat. */
+  brokeYearsToEnd: number;
 }
 
 export interface EvaluationConfig {
@@ -204,6 +210,7 @@ export const defaultConfig: EngineConfig = {
     },
     scandalPenalty: 4,
     scandalTag: "scandal_active",
+    scandalRiskThreshold: 60,
     polarizationRejection: { threshold: 50, coef: 0.2 },
     noiseSigma: 6,
     adversaryVariation: 10,
@@ -261,7 +268,13 @@ export const defaultConfig: EngineConfig = {
     },
     peakTotal: 65,
   },
-  lifeEnd: { retireMinAge: 60, retireForcedAge: 80, removalScandal: 85 },
+  lifeEnd: {
+    retireMinAge: 60,
+    retireForcedAge: 80,
+    removalScandal: 85,
+    brokeResource: 10,
+    brokeYearsToEnd: 4,
+  },
   civil: {
     maxTurns: 8,
     creation: { freePoints: 40, maxAttribute: 80, maxOriginMod: 10 },

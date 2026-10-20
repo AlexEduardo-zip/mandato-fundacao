@@ -50,16 +50,17 @@ export function eligibleEvents(
     .sort((a, b) => a.id.localeCompare(b.id));
 }
 
-/** Weighted draw without replacement of up to `config.careerEventsPerTurn` events. */
+/** Weighted draw without replacement of up to `limit` events (default `config.careerEventsPerTurn`). */
 export function selectEvents(
   state: GameState,
   catalog: Catalog,
   config: EngineConfig = defaultConfig,
+  limit: number = config.careerEventsPerTurn,
 ): { events: GameEvent[]; rng: number } {
   const pool = eligibleEvents(state, catalog, config);
   const rng = new Rng(state.rng);
   const picked: GameEvent[] = [];
-  while (picked.length < config.careerEventsPerTurn && pool.length > 0) {
+  while (picked.length < limit && pool.length > 0) {
     const index = rng.weightedIndex(pool.map((e) => eventWeight(e, state, config)));
     picked.push(pool.splice(index, 1)[0] as GameEvent);
   }

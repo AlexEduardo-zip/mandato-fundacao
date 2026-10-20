@@ -2,11 +2,11 @@ import { evaluateCondition } from "./conditions.js";
 import { defaultConfig, type EngineConfig } from "./config.js";
 import { expireMandate } from "./career.js";
 import { closeCivilYear } from "./civil.js";
-import { checkForcedEnd, checkRemoval } from "./lifeend.js";
+import { checkForcedEnd, checkRemoval, trackDefeat } from "./lifeend.js";
 import { applyEffects, takeDueScheduled } from "./effects.js";
 import { Rng } from "./rng.js";
 import { selectEvents } from "./select.js";
-import type { Catalog, GameEvent, GameState } from "./types.js";
+import type { Catalog, GameEvent, GameState, ScheduledEvent } from "./types.js";
 
 export function getEvent(catalog: Catalog, id: string): GameEvent {
   const event = catalog.events.find((e) => e.id === id);
@@ -41,18 +41,33 @@ function applyAnchors(state: GameState, catalog: Catalog, config: EngineConfig):
     .filter((e) => e.kind === "anchor" && e.anchorYear === state.player.year)
     .filter((e) => !e.when || evaluateCondition(e.when, state))
     .sort((a, b) => a.id.localeCompare(b.id));
-  return anchors.reduce((acc, anchor) => fireEvent(acc, anchor, config), state);
+  return anchors.slice(0, 1).reduce((acc, anchor) => fireEvent(acc, anchor, config), state);
 }
 
-function runScheduled(state: GameState, catalog: Catalog, config: EngineConfig): GameState {
+function runScheduled(
+  state: GameState,
+  catalog: Catalog,
+  config: EngineConfig,
+): { state: GameState; fired: number } {
   const { due, state: rest } = takeDueScheduled(state, state.player.year);
   const rng = new Rng(rest.rng);
   let next = rest;
+  let fired = 0;
+  const postponed: ScheduledEvent[] = [];
   for (const item of due) {
+    if (fired >= config.careerEventsPerTurn) {
+      postponed.push({ ...item, dueYear: state.player.year + 1 });
+      continue;
+    }
     if (item.chance !== undefined && !rng.chance(item.chance)) continue;
     next = fireEvent(next, getEvent(catalog, item.eventId), config);
+    fired++;
   }
-  return { ...next, rng: rng.state };
+  next = {
+    ...next,
+    player: { ...next.player, scheduled: [...next.player.scheduled, ...postponed] },
+  };
+  return { state: { ...next, rng: rng.state }, fired };
 }
 
 /**
@@ -68,8 +83,9 @@ export function startTurn(
   if (state.turnOpen) throw new Error("turn already open");
   let next: GameState = { ...state, turnOpen: true };
   next = applyAnchors(next, catalog, config);
-  next = runScheduled(next, catalog, config);
-  const drawn = selectEvents(next, catalog, config);
+  const scheduled = runScheduled(next, catalog, config);
+  next = scheduled.state;
+  const drawn = selectEvents(next, catalog, config, config.careerEventsPerTurn - scheduled.fired);
   next = drawn.events.reduce((acc, event) => fireEvent(acc, event, config), {
     ...next,
     rng: drawn.rng,
@@ -81,7 +97,10 @@ export function startTurn(
 export function endTurn(state: GameState, config: EngineConfig = defaultConfig): GameState {
   if (!state.turnOpen) throw new Error("no open turn");
   if (state.pending.length > 0) throw new Error("decisions still pending");
-  const closed = checkRemoval(closeCivilYear(expireMandate(state, config), config), config);
+  const closed = trackDefeat(
+    closeCivilYear(expireMandate(checkRemoval(state, config), config), config),
+    config,
+  );
   return checkForcedEnd(
     {
       ...closed,
