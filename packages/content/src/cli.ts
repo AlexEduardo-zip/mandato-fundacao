@@ -4,6 +4,7 @@ import { validateContent } from "./validate.js";
 const { errors, counts } = validateContent(loadRawContent(), {
   expectedAnchors: 17,
   expectedOrigins: 6,
+  minEvents: 28,
 });
 
 if (errors.length > 0) {
@@ -12,5 +13,5 @@ if (errors.length > 0) {
   process.exit(1);
 }
 console.log(
-  `Content ok: ${counts.anchors} anchors, ${counts.origins} origins, ${counts.parties} parties in ${counts.blocs} blocs`,
+  `Content ok: ${counts.anchors} anchors, ${counts.events} events, ${counts.origins} origins, ${counts.parties} parties in ${counts.blocs} blocs`,
 );

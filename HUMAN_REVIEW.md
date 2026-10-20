@@ -22,6 +22,10 @@ Tudo que o Claude não deve decidir sozinho entra aqui durante a Trilha A. Forma
 - [ ] conteúdo · Perfis dos partidos fictícios (`parties.json`, campo `leaning`) · a posição no eixo econômico e social pode ser lida como alusão a partidos reais; revisar
 - [ ] conteúdo · Pontos fortes e fracos das origens · conferir se não reforçam estereótipos de categorias (sindicalista, trabalhador rural, empresário etc.)
 
+- [ ] conteúdo · 28 eventos civis (`packages/content/data/events-civil.json`) · texto, humor e dilemas escritos por IA; revisar tom da sátira, clareza e se os desfechos soam justos para cada categoria
+- [ ] conteúdo · Eventos por origem (sindicato, escola, campo, empresa, DCE, bairro) · checar se retratam as categorias sem caricatura e com realismo suficiente
+- [ ] balanceamento · Efeitos dos eventos civis (±1 a ±9) e probabilidades dos desfechos · provisórios, ajustar na simulação em lote (E5-1)
+
 ## Jurídico
 
 - [ ] jurídico · Âncoras sobre fatos recentes com pessoas vivas (2014 a 2023) · avaliar com advogado antes de publicar, conforme docs/04

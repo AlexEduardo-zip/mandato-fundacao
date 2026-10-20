@@ -1,0 +1,2301 @@
+[
+  {
+    "id": "ev_civil_convite_partido",
+    "kind": "career",
+    "title": "Convite de um partido",
+    "text": "Um dirigente partidário aparece na porta da sua entidade com café, folheto e um sorriso bem treinado. Diz que o partido precisa de gente séria, com trajetória de verdade, e que a sua história chamou atenção. Promete estrutura, apoio e um lugar na mesa. Não fala de contrapartidas, o que, em política, costuma ser exatamente onde elas moram.",
+    "status": "rascunho",
+    "tags": ["civil", "partido"],
+    "when": {
+      "phase": "civil"
+    },
+    "weight": 1,
+    "choices": [
+      {
+        "id": "aceitar",
+        "label": "Aceitar o convite",
+        "outcomes": [
+          {
+            "chance": 3,
+            "text": "Você ganha contatos e uma sala emprestada no diretório.",
+            "effects": [
+              {
+                "add": "network",
+                "value": 6
+              },
+              {
+                "addTag": "invite_post"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "O apoio vem, mas com pedidos que você ainda não sabe medir.",
+            "effects": [
+              {
+                "add": "network",
+                "value": 4
+              },
+              {
+                "add": "capital",
+                "value": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "recusar",
+        "label": "Agradecer e recusar por enquanto",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "Sua independência rende respeito, mas fecha uma porta por um tempo.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 3
+              },
+              {
+                "add": "integrity",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_convite_padrinho",
+    "kind": "career",
+    "title": "Um padrinho se aproxima",
+    "text": "Um político experiente, desses que sabem o nome de todo mundo no bairro, convida você para um almoço. Elogia o seu trabalho, pergunta sobre os seus planos e deixa escapar que está pensando na sucessão. Ninguém lhe oferece nada por escrito, e é justamente isso que torna a proposta tão convincente e tão difícil de recusar.",
+    "status": "rascunho",
+    "tags": ["civil", "padrinho"],
+    "when": {
+      "phase": "civil"
+    },
+    "weight": 1,
+    "choices": [
+      {
+        "id": "aceitar",
+        "label": "Aceitar a proteção",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "Ele passa a abrir portas e a cobrar presença em eventos.",
+            "effects": [
+              {
+                "add": "network",
+                "value": 6
+              },
+              {
+                "addTag": "strong_ally"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "A proteção vem com um preço: sua voz fica mais baixa em público.",
+            "effects": [
+              {
+                "add": "network",
+                "value": 4
+              },
+              {
+                "add": "integrity",
+                "value": -3
+              },
+              {
+                "addTag": "strong_ally"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "agradecer",
+        "label": "Manter distância educada",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "Você segue por conta própria e ganha fama de teimoso.",
+            "effects": [
+              {
+                "add": "resilience",
+                "value": 2
+              },
+              {
+                "add": "prestige",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_escandalo_entidade",
+    "kind": "career",
+    "title": "Escândalo na entidade",
+    "text": "A diretoria da sua entidade está no centro de uma denúncia: uma verba de eventos que não fecha, notas fiscais de papelaria que ninguém lembra de ter comprado. Os associados cobram explicações, o presidente pede discrição e a imprensa local já telefonou duas vezes. Você sabe um pouco mais do que gostaria e precisa decidir o que fazer com isso.",
+    "status": "rascunho",
+    "tags": ["civil", "escandalo"],
+    "when": {
+      "phase": "civil"
+    },
+    "weight": 1,
+    "choices": [
+      {
+        "id": "denunciar",
+        "label": "Exigir apuração aberta",
+        "outcomes": [
+          {
+            "chance": 3,
+            "text": "A entidade se renova e seu nome sai fortalecido.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 6
+              },
+              {
+                "add": "integrity",
+                "value": 3
+              },
+              {
+                "add": "network",
+                "value": -3
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "A apuração racha o grupo, mas você fica com a reputação limpa.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 3
+              },
+              {
+                "add": "network",
+                "value": -6
+              },
+              {
+                "add": "integrity",
+                "value": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "abafar",
+        "label": "Cuidar para que não vaze",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "O assunto esfria, e você ganha aliados que lhe devem favores.",
+            "effects": [
+              {
+                "add": "network",
+                "value": 4
+              },
+              {
+                "add": "scandalRisk",
+                "value": 8
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "A história vaza do mesmo jeito, e você aparece como cúmplice.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": -6
+              },
+              {
+                "add": "scandalRisk",
+                "value": 10
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_crise_setorial",
+    "kind": "career",
+    "title": "Crise no setor",
+    "text": "Fechamentos, demissões e promessas não cumpridas: o setor em que você atua passa por uma crise séria, e a categoria olha para quem sabe falar. Há reuniões todas as noites, o telefone não para e todos têm uma opinião sobre o culpado. Alguém precisa organizar a resposta, e quem faz isso costuma ser lembrado, para o bem ou para o mal.",
+    "status": "rascunho",
+    "tags": ["civil", "crise"],
+    "when": {
+      "phase": "civil"
+    },
+    "weight": 1,
+    "choices": [
+      {
+        "id": "organizar",
+        "label": "Organizar a resposta da categoria",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "A mobilização funciona e você vira referência.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 8
+              },
+              {
+                "add": "network",
+                "value": 4
+              },
+              {
+                "addTag": "crisis_call"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "A resposta é tímida, mas ninguém mais tomou a frente.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 3
+              },
+              {
+                "add": "network",
+                "value": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "esperar",
+        "label": "Esperar a poeira baixar",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "Você poupa energia, mas perde espaço para quem agiu.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": -3
+              },
+              {
+                "add": "resilience",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_represalia",
+    "kind": "career",
+    "title": "Represália",
+    "text": "Depois de uma fala sua em assembleia, começaram os recados indiretos: um contrato que não sai, uma visita inesperada de fiscalização, um convite que sumiu da agenda. Ninguém assume nada, mas todo mundo entende a mensagem. Você pode recuar e preservar a calma ou manter o discurso e descobrir até onde vai a paciência de quem manda.",
+    "status": "rascunho",
+    "tags": ["civil", "pressao"],
+    "when": {
+      "phase": "civil"
+    },
+    "weight": 1,
+    "choices": [
+      {
+        "id": "resistir",
+        "label": "Manter o discurso",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "A coragem rende admiração e alguns inimigos novos.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 5
+              },
+              {
+                "add": "resilience",
+                "value": 3
+              },
+              {
+                "add": "money",
+                "value": -4
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "A pressão aumenta e o custo é alto, mas você não recua.",
+            "effects": [
+              {
+                "add": "resilience",
+                "value": 3
+              },
+              {
+                "add": "money",
+                "value": -6
+              },
+              {
+                "add": "prestige",
+                "value": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "recuar",
+        "label": "Baixar o tom",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "A paz volta, mas sua fala perde força.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": -5
+              },
+              {
+                "add": "money",
+                "value": 2
+              },
+              {
+                "addTag": "origin_betrayal"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_projeto_comunitario",
+    "kind": "career",
+    "title": "Projeto comunitário",
+    "text": "Um projeto de bairro precisa de coordenação: reformar a quadra, montar uma horta, organizar um curso de qualificação. Sobram boas ideias e faltam voluntários com tempo e disciplina. Alguém tem de montar a planilha, convencer o comércio local e aparecer nas reuniões. É trabalho sem aplauso, mas as pessoas lembram de quem esteve lá.",
+    "status": "rascunho",
+    "tags": ["civil", "comunidade"],
+    "when": {
+      "phase": "civil"
+    },
+    "weight": 1,
+    "choices": [
+      {
+        "id": "liderar",
+        "label": "Assumir a coordenação",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "O projeto sai do papel e seu nome circula pelo bairro.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 7
+              },
+              {
+                "add": "network",
+                "value": 5
+              },
+              {
+                "addTag": "entity_leader"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "Dá trabalho demais, mas o resultado aparece.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 4
+              },
+              {
+                "add": "network",
+                "value": 4
+              },
+              {
+                "add": "management",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "apoiar",
+        "label": "Ajudar sem aparecer",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "Você colabora, ganha amigos e nenhum cargo.",
+            "effects": [
+              {
+                "add": "network",
+                "value": 3
+              },
+              {
+                "add": "integrity",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_debate_publico",
+    "kind": "career",
+    "title": "Convite para um debate",
+    "text": "Uma associação local organiza um debate público sobre os problemas da região e quer você na mesa. Haverá plateia, microfone aberto e alguém com um celular filmando. É a chance de mostrar que você sabe falar e propor, mas também de tropeçar diante de gente que não perdoa pergunta mal respondida.",
+    "status": "rascunho",
+    "tags": ["civil", "debate"],
+    "when": {
+      "phase": "civil"
+    },
+    "weight": 1,
+    "choices": [
+      {
+        "id": "ir",
+        "label": "Ir ao debate",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "Sua fala é clara e o vídeo circula bem.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 8
+              },
+              {
+                "add": "oratory",
+                "value": 2
+              },
+              {
+                "add": "media",
+                "value": 4
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "Você se enrola numa pergunta e o trecho vira piada.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": -4
+              },
+              {
+                "add": "media",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "declinar",
+        "label": "Mandar um representante",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "Ninguém sente falta, mas ninguém fica sabendo de você.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": -1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_entrevista_radio",
+    "kind": "career",
+    "title": "Entrevista na rádio local",
+    "text": "O programa de maior audiência da rádio local abre espaço para você falar sobre o seu trabalho. O apresentador é simpático, mas conhecido por perguntas inesperadas ao vivo. Muita gente escuta no trânsito, na cozinha e na obra. É uma boa oportunidade de ficar conhecido, desde que a conversa não escape ao seu controle.",
+    "status": "rascunho",
+    "tags": ["civil", "midia"],
+    "when": {
+      "phase": "civil"
+    },
+    "weight": 1,
+    "choices": [
+      {
+        "id": "aceitar",
+        "label": "Dar a entrevista",
+        "outcomes": [
+          {
+            "chance": 3,
+            "text": "Você passa confiança, e as ligações dos ouvintes são positivas.",
+            "effects": [
+              {
+                "add": "media",
+                "value": 7
+              },
+              {
+                "add": "prestige",
+                "value": 4
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "Uma resposta fora de tom rende reclamações.",
+            "effects": [
+              {
+                "add": "media",
+                "value": 3
+              },
+              {
+                "add": "prestige",
+                "value": -2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "recusar",
+        "label": "Preferir ficar fora do ar",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "Você evita risco e perde exposição.",
+            "effects": [
+              {
+                "add": "media",
+                "value": -1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_abaixo_assinado",
+    "kind": "career",
+    "title": "Abaixo-assinado",
+    "text": "Moradores, colegas e conhecidos querem um abaixo-assinado para cobrar uma melhoria que nunca sai: iluminação, transporte, uma vaga em creche. Falta quem recolha as assinaturas e leve o documento ao gabinete certo. A tarefa é simples, e justamente por isso quem a assume costuma ser visto como alguém em quem se pode confiar.",
+    "status": "rascunho",
+    "tags": ["civil", "mobilizacao"],
+    "when": {
+      "phase": "civil"
+    },
+    "weight": 1,
+    "choices": [
+      {
+        "id": "liderar",
+        "label": "Puxar a coleta de assinaturas",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "Centenas assinam e o gabinete responde com uma reunião.",
+            "effects": [
+              {
+                "add": "network",
+                "value": 6
+              },
+              {
+                "add": "prestige",
+                "value": 4
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "O gabinete ignora o documento, mas a mobilização gera conhecidos.",
+            "effects": [
+              {
+                "add": "network",
+                "value": 4
+              },
+              {
+                "add": "prestige",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "assinar",
+        "label": "Apenas assinar",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "Você cumpre sua parte sem se expor.",
+            "effects": [
+              {
+                "add": "network",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_proposta_cargo",
+    "kind": "career",
+    "title": "Proposta de cargo de confiança",
+    "text": "Alguém do gabinete de um político local liga com uma proposta: um cargo de assessoria, com salário razoável e acesso ao dia a dia da política. O recado é claro, a vaga vem com fidelidade esperada e ninguém pergunta se você aceita discordar. É um atalho para entender a máquina por dentro, mas atalhos costumam ter pedágio.",
+    "status": "rascunho",
+    "tags": ["civil", "cargo"],
+    "when": {
+      "phase": "civil"
+    },
+    "weight": 1,
+    "choices": [
+      {
+        "id": "aceitar",
+        "label": "Aceitar o cargo",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "Você aprende como funciona o poder e ganha contatos.",
+            "effects": [
+              {
+                "add": "capital",
+                "value": 8
+              },
+              {
+                "add": "money",
+                "value": 5
+              },
+              {
+                "addTag": "invite_post"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "O cargo traz renda, mas desgasta sua imagem na categoria.",
+            "effects": [
+              {
+                "add": "capital",
+                "value": 6
+              },
+              {
+                "add": "money",
+                "value": 5
+              },
+              {
+                "add": "prestige",
+                "value": -4
+              },
+              {
+                "addTag": "invite_post"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "recusar",
+        "label": "Recusar e seguir no que faz",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "Sua autonomia é preservada e sua renda também.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 2
+              },
+              {
+                "add": "integrity",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_sindicalista_greve",
+    "kind": "career",
+    "title": "Greve na categoria",
+    "text": "A negociação salarial travou e a assembleia pede greve. A patronal oferece um reajuste que não cobre a inflação do mês e já insinua demissões. Os mais jovens querem parar tudo agora; os mais velhos lembram de greves que terminaram em derrota. Seu nome é o primeiro a ser lembrado quando alguém precisa de uma voz firme na porta da fábrica.",
+    "status": "rascunho",
+    "tags": ["civil", "sindicato", "greve"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_sindicalista"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "greve",
+        "label": "Defender a greve",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "A greve para a produção e a patronal volta à mesa.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 9
+              },
+              {
+                "add": "network",
+                "value": 4
+              },
+              {
+                "add": "money",
+                "value": -4
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "A greve se arrasta e há demissões, mas a categoria fica unida.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 4
+              },
+              {
+                "add": "network",
+                "value": 3
+              },
+              {
+                "add": "money",
+                "value": -6
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "negociar",
+        "label": "Buscar um acordo antes",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "O acordo sai com ganho pequeno e sem conflito.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 2
+              },
+              {
+                "add": "pragmatism",
+                "value": 2
+              },
+              {
+                "add": "money",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "Parte da categoria o chama de pelego.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": -5
+              },
+              {
+                "add": "pragmatism",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_sindicalista_diretoria",
+    "kind": "career",
+    "title": "Eleição da diretoria do sindicato",
+    "text": "Chega a hora de renovar a diretoria do sindicato. A chapa de situação oferece estabilidade; a oposição promete renovação e uma assembleia mensal aberta. Você é convidado a encabeçar a oposição, num processo de cartazes, comícios de portão de fábrica e muita conversa de corredor. Se vencer, passa a responder por milhares de trabalhadores.",
+    "status": "rascunho",
+    "tags": ["civil", "sindicato", "eleicao"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_sindicalista"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "disputar",
+        "label": "Encabeçar a chapa de oposição",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "A chapa vence e você assume a presidência.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 8
+              },
+              {
+                "add": "network",
+                "value": 6
+              },
+              {
+                "addTag": "entity_leader"
+              },
+              {
+                "addTag": "promessa_categoria"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "A chapa perde por pouco, mas sai com visibilidade.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 3
+              },
+              {
+                "add": "network",
+                "value": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "apoiar",
+        "label": "Apoiar sem disputar",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "Você ajuda na campanha e fica bem com os dois lados.",
+            "effects": [
+              {
+                "add": "network",
+                "value": 3
+              },
+              {
+                "add": "pragmatism",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_sindicalista_acordo",
+    "kind": "career",
+    "title": "Acordo coletivo",
+    "text": "A empresa propõe um acordo coletivo com banco de horas, participação nos lucros e uma cláusula que muitos acham delicada. Os advogados do sindicato divergem, e a base quer saber em linguagem simples o que ganha e o que perde. Explicar o texto sem enganar ninguém é um trabalho de paciência que pouca gente quer fazer.",
+    "status": "rascunho",
+    "tags": ["civil", "sindicato", "negociacao"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_sindicalista"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "explicar",
+        "label": "Explicar item por item à categoria",
+        "outcomes": [
+          {
+            "chance": 3,
+            "text": "A base entende, discute e aprova um acordo melhor.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 6
+              },
+              {
+                "add": "network",
+                "value": 4
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "A discussão é longa, mas a confiança cresce.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 3
+              },
+              {
+                "add": "network",
+                "value": 3
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "assinar",
+        "label": "Fechar logo com a empresa",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "A empresa agradece, mas a base fica desconfiada.",
+            "effects": [
+              {
+                "add": "money",
+                "value": 4
+              },
+              {
+                "add": "prestige",
+                "value": -4
+              },
+              {
+                "addTag": "origin_betrayal"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_professor_crise_escola",
+    "kind": "career",
+    "title": "Crise na escola",
+    "text": "A escola onde você trabalha passa por uma semana difícil: goteira na sala, merenda atrasada e um boato de remanejamento de turmas. Pais e alunos estão inquietos, e a direção pede que os professores mantenham a calma. Você sabe que calma não resolve infiltração, e que quem fala por todos acaba carregando todos nas costas.",
+    "status": "rascunho",
+    "tags": ["civil", "escola", "crise"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_professor"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "cobrar",
+        "label": "Liderar a cobrança junto aos pais",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "A pressão funciona, e a prefeitura promete obras.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 8
+              },
+              {
+                "add": "network",
+                "value": 4
+              },
+              {
+                "addTag": "crisis_call"
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "A resposta é lenta, mas a escola vira notícia.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 4
+              },
+              {
+                "add": "media",
+                "value": 4
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "calma",
+        "label": "Pedir calma e esperar a direção",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "A escola segue como está e o assunto perde fôlego.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": -2
+              },
+              {
+                "add": "pragmatism",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_professor_conselho",
+    "kind": "career",
+    "title": "Eleição para o conselho escolar",
+    "text": "A comunidade escolar vai eleger o conselho que decide sobre uso de verbas, calendário e projetos. Seus colegas insistem que você se candidate, e os pais confiam no seu trabalho em sala. Presidir o conselho significa muitas reuniões à noite, mas é um jeito concreto de provar que professor também sabe administrar.",
+    "status": "rascunho",
+    "tags": ["civil", "escola", "eleicao"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_professor"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "candidatar",
+        "label": "Candidatar-se à presidência",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "Você vence e passa a coordenar a comunidade escolar.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 7
+              },
+              {
+                "add": "network",
+                "value": 5
+              },
+              {
+                "add": "management",
+                "value": 2
+              },
+              {
+                "addTag": "entity_leader"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "Você perde, mas a campanha mostra seu trabalho.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 3
+              },
+              {
+                "add": "network",
+                "value": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "indicar",
+        "label": "Indicar um colega",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "O colega agradece e você segue com o foco nas aulas.",
+            "effects": [
+              {
+                "add": "network",
+                "value": 2
+              },
+              {
+                "add": "integrity",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_professor_projeto",
+    "kind": "career",
+    "title": "Projeto pedagógico",
+    "text": "Você tem um projeto de leitura e cidadania que dá certo na sua turma. A secretaria de educação se interessa e propõe ampliar para outras escolas, com a condição de que a imagem do projeto passe a ser da gestão. Os alunos aprenderam, as famílias gostaram e agora o crédito vira disputa entre quem fez e quem anuncia.",
+    "status": "rascunho",
+    "tags": ["civil", "escola", "projeto"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_professor"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "manter",
+        "label": "Manter a autoria e negociar a expansão",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "O projeto cresce e seu nome continua nele.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 7
+              },
+              {
+                "add": "management",
+                "value": 2
+              },
+              {
+                "add": "media",
+                "value": 3
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "A expansão atrasa, mas a autoria fica preservada.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 3
+              },
+              {
+                "add": "integrity",
+                "value": 2
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ceder",
+        "label": "Ceder o crédito para ampliar o alcance",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "O projeto chega a muitas escolas e seu nome some.",
+            "effects": [
+              {
+                "add": "network",
+                "value": 4
+              },
+              {
+                "add": "prestige",
+                "value": -2
+              },
+              {
+                "add": "pragmatism",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_rural_conflito_fundiario",
+    "kind": "career",
+    "title": "Conflito fundiário",
+    "text": "Uma área de cultivo antiga está no centro de uma disputa: de um lado, famílias que vivem ali há décadas, de outro, um proprietário com documentos e advogados. A tensão cresce e há notícias de ameaças. Você conhece os dois lados da cerca e sabe que qualquer palavra errada pode virar notícia, processo ou coisa pior.",
+    "status": "rascunho",
+    "tags": ["civil", "campo", "conflito"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_trabalhador_rural"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "defender",
+        "label": "Defender as famílias e buscar mediação",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "A mediação reconhece o direito das famílias.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 8
+              },
+              {
+                "add": "network",
+                "value": 4
+              },
+              {
+                "addTag": "crisis_call"
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "O caso se arrasta, e você fica marcado pelo proprietário.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 5
+              },
+              {
+                "add": "resilience",
+                "value": 3
+              },
+              {
+                "add": "money",
+                "value": -4
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "neutro",
+        "label": "Manter-se neutro",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "Você evita problemas e perde a confiança de quem precisava de apoio.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": -4
+              },
+              {
+                "add": "pragmatism",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_rural_cooperativa",
+    "kind": "career",
+    "title": "Assembleia da cooperativa",
+    "text": "A cooperativa precisa decidir como vender a safra deste ano: aceitar a oferta de um atravessador que paga rápido ou esperar um comprador melhor, correndo o risco de perder a colheita. A assembleia é longa, cheia de contas no papel e de desconfiança. A sua palavra pesa, porque ninguém ali é de falar bonito, mas todos sabem quem é honesto.",
+    "status": "rascunho",
+    "tags": ["civil", "campo", "cooperativa"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_trabalhador_rural"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "esperar",
+        "label": "Defender a venda coletiva por melhor preço",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "A espera compensa e a cooperativa ganha força.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 7
+              },
+              {
+                "add": "network",
+                "value": 5
+              },
+              {
+                "addTag": "entity_leader"
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "O preço melhora pouco, mas a unidade se mantém.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 3
+              },
+              {
+                "add": "network",
+                "value": 3
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vender",
+        "label": "Aceitar a oferta do atravessador",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "O dinheiro entra rápido, e o grupo se divide.",
+            "effects": [
+              {
+                "add": "money",
+                "value": 5
+              },
+              {
+                "add": "network",
+                "value": -3
+              },
+              {
+                "addTag": "origin_betrayal"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_rural_seca",
+    "kind": "career",
+    "title": "Seca e crédito",
+    "text": "A chuva não veio e o crédito do banco vence antes da próxima safra. Famílias inteiras correm o risco de perder o pouco que têm. Há um programa de renegociação, mas a papelada é confusa e o atendimento mais ainda. Quem entende de formulário vira, de repente, a pessoa mais procurada da comunidade.",
+    "status": "rascunho",
+    "tags": ["civil", "campo", "credito"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_trabalhador_rural"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "ajudar",
+        "label": "Montar um mutirão para renegociar as dívidas",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "Dezenas de famílias conseguem renegociar.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 8
+              },
+              {
+                "add": "network",
+                "value": 6
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "Poucas conseguem, mas a comunidade reconhece o esforço.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 4
+              },
+              {
+                "add": "network",
+                "value": 4
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cuidar",
+        "label": "Cuidar só da própria roça",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "Você se salva e fica mal visto pelos vizinhos.",
+            "effects": [
+              {
+                "add": "money",
+                "value": 3
+              },
+              {
+                "add": "prestige",
+                "value": -4
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_empresario_quebra",
+    "kind": "career",
+    "title": "Quebra de um fornecedor",
+    "text": "Um fornecedor importante quebrou e deixou sua empresa com pedidos a entregar e sem matéria-prima. Os bancos apertam, os funcionários perguntam sobre salários e um concorrente oferece comprar o seu negócio por um preço humilhante. É o tipo de semana em que se descobre se a empresa tem estrutura ou só tem nome.",
+    "status": "rascunho",
+    "tags": ["civil", "empresa", "crise"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_empresario"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "resistir",
+        "label": "Renegociar e manter a empresa",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "Você sai da crise com a empresa menor, mas viva.",
+            "effects": [
+              {
+                "add": "money",
+                "value": -4
+              },
+              {
+                "add": "resilience",
+                "value": 3
+              },
+              {
+                "add": "prestige",
+                "value": 5
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "A empresa aguenta, mas as dívidas ficam pesadas.",
+            "effects": [
+              {
+                "add": "money",
+                "value": -8
+              },
+              {
+                "add": "resilience",
+                "value": 3
+              },
+              {
+                "add": "prestige",
+                "value": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vender",
+        "label": "Vender para o concorrente",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "Você encerra o problema e ganha caixa para novos planos.",
+            "effects": [
+              {
+                "add": "money",
+                "value": 8
+              },
+              {
+                "add": "prestige",
+                "value": -4
+              },
+              {
+                "add": "network",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_empresario_associacao",
+    "kind": "career",
+    "title": "Associação comercial",
+    "text": "A associação comercial da cidade vai eleger sua diretoria, e os comerciantes querem alguém que enfrente a prefeitura sobre impostos e alvarás. Você tem nome, caixa e um bom relacionamento com os bancos, mas a vaga exige tempo e disposição para brigar em público por causas que nem sempre dão lucro.",
+    "status": "rascunho",
+    "tags": ["civil", "empresa", "eleicao"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_empresario"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "presidir",
+        "label": "Disputar a presidência da associação",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "Você é eleito e vira interlocutor do setor.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 7
+              },
+              {
+                "add": "network",
+                "value": 6
+              },
+              {
+                "addTag": "entity_leader"
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "A disputa é dura e você perde, mas fica conhecido.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 3
+              },
+              {
+                "add": "network",
+                "value": 4
+              },
+              {
+                "add": "money",
+                "value": -3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "financiar",
+        "label": "Financiar a chapa e ficar nos bastidores",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "Sua influência cresce sem aparecer, mas custa caro.",
+            "effects": [
+              {
+                "add": "network",
+                "value": 4
+              },
+              {
+                "add": "money",
+                "value": -5
+              },
+              {
+                "add": "capital",
+                "value": 3
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_empresario_patrocinio",
+    "kind": "career",
+    "title": "Pedido de patrocínio",
+    "text": "Uma festa popular tradicional pede patrocínio e, ao mesmo tempo, um político local sugere que sua empresa apoie um evento da prefeitura. Os dois pedidos se atrapalham, e seu orçamento só cobre um. Escolher entre a tradição do bairro e a boa vontade do poder é uma decisão de marketing que também é de política.",
+    "status": "rascunho",
+    "tags": ["civil", "empresa", "patrocinio"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_empresario"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "festa",
+        "label": "Patrocinar a festa do bairro",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "A festa lota e a marca da empresa vira simpatia.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 6
+              },
+              {
+                "add": "base",
+                "value": 4
+              },
+              {
+                "add": "money",
+                "value": -5
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "O público agradece, mas o político fecha a cara.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 4
+              },
+              {
+                "add": "money",
+                "value": -5
+              },
+              {
+                "add": "capital",
+                "value": -2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "prefeitura",
+        "label": "Apoiar o evento da prefeitura",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "O apoio rende contatos e promessas de contratos.",
+            "effects": [
+              {
+                "add": "capital",
+                "value": 6
+              },
+              {
+                "add": "money",
+                "value": -4
+              },
+              {
+                "add": "network",
+                "value": 3
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "O evento é criticado, e sua marca é associada ao gestor.",
+            "effects": [
+              {
+                "add": "capital",
+                "value": 3
+              },
+              {
+                "add": "money",
+                "value": -4
+              },
+              {
+                "add": "prestige",
+                "value": -3
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_estudante_dce",
+    "kind": "career",
+    "title": "Eleição do DCE",
+    "text": "O diretório central dos estudantes vai a eleições. A gestão atual está desgastada, e o grupo que o procura quer renovação, mais debates e menos festa de calouros bancada por patrocinador. Você tem fôlego para panfletagem, assembleia e noites mal dormidas. Se vencer, passa a negociar com a reitoria em nome de milhares de colegas.",
+    "status": "rascunho",
+    "tags": ["civil", "estudante", "eleicao"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_estudante"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "disputar",
+        "label": "Encabeçar a chapa",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "A chapa vence e você assume a presidência do DCE.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 8
+              },
+              {
+                "add": "network",
+                "value": 6
+              },
+              {
+                "add": "oratory",
+                "value": 2
+              },
+              {
+                "addTag": "entity_leader"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "A chapa perde, mas sai com mais gente do que entrou.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 3
+              },
+              {
+                "add": "network",
+                "value": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "apoiar",
+        "label": "Apoiar outra chapa",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "Você ajuda a campanha e aprende com os erros dos outros.",
+            "effects": [
+              {
+                "add": "network",
+                "value": 3
+              },
+              {
+                "add": "pragmatism",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_estudante_ato",
+    "kind": "career",
+    "title": "Ato público",
+    "text": "Uma decisão do governo mexe com o orçamento da educação, e os estudantes querem ir às ruas. O ato pode reunir milhares de pessoas, mas também pode virar confusão, com direito a cassetete e manchete errada. Alguém precisa conversar com a polícia, organizar o carro de som e definir as palavras de ordem.",
+    "status": "rascunho",
+    "tags": ["civil", "estudante", "mobilizacao"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_estudante"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "organizar",
+        "label": "Organizar o ato",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "O ato é grande e pacífico, e o recado chega.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 8
+              },
+              {
+                "add": "media",
+                "value": 6
+              },
+              {
+                "addTag": "crisis_call"
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "O ato é menor que o esperado, mas ganha espaço na imprensa.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 4
+              },
+              {
+                "add": "media",
+                "value": 4
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "acompanhar",
+        "label": "Participar sem coordenar",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "Você marcha com os colegas e não assume a conta.",
+            "effects": [
+              {
+                "add": "network",
+                "value": 3
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_estudante_ocupacao",
+    "kind": "career",
+    "title": "Ocupação da reitoria",
+    "text": "Parte do movimento propõe ocupar a reitoria até que o reitor receba as demandas. A medida chama atenção, mas costuma terminar em ação judicial e desgaste com os colegas que só queriam assistir às aulas. Seu apoio daria mais legitimidade ao grupo, e sua ausência pode ser lida como recuo.",
+    "status": "rascunho",
+    "tags": ["civil", "estudante", "conflito"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_estudante"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "ocupar",
+        "label": "Apoiar a ocupação",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "A reitoria cede em parte e o movimento ganha fôlego.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 6
+              },
+              {
+                "add": "media",
+                "value": 5
+              },
+              {
+                "add": "scandalRisk",
+                "value": 4
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "A Justiça manda desocupar e o saldo é misto.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 2
+              },
+              {
+                "add": "media",
+                "value": 3
+              },
+              {
+                "add": "scandalRisk",
+                "value": 6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "dialogar",
+        "label": "Defender o diálogo com a reitoria",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "Você é acusado de moderado, mas evita o confronto.",
+            "effects": [
+              {
+                "add": "pragmatism",
+                "value": 3
+              },
+              {
+                "add": "prestige",
+                "value": -2
+              },
+              {
+                "add": "network",
+                "value": 3
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_comunitario_enchente",
+    "kind": "career",
+    "title": "Enchente no bairro",
+    "text": "A chuva forte inundou várias ruas do bairro e as famílias perderam móveis, documentos e noites de sono. A prefeitura promete ajuda, mas a ajuda demora. Você conhece cada beco, sabe quem precisa de colchão e quem tem barco. Organizar a resposta imediata é urgente e, de quebra, mostra de que lado você está.",
+    "status": "rascunho",
+    "tags": ["civil", "bairro", "crise"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_lider_comunitario"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "organizar",
+        "label": "Coordenar o socorro no bairro",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "O socorro chega rápido e você vira referência.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 9
+              },
+              {
+                "add": "network",
+                "value": 5
+              },
+              {
+                "addTag": "crisis_call"
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "Falta estrutura, mas ninguém fica sem ajuda.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 5
+              },
+              {
+                "add": "network",
+                "value": 4
+              },
+              {
+                "add": "resilience",
+                "value": 2
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cobrar",
+        "label": "Concentrar-se em cobrar a prefeitura",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "A cobrança rende manchete e menos socorro direto.",
+            "effects": [
+              {
+                "add": "media",
+                "value": 5
+              },
+              {
+                "add": "prestige",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_comunitario_associacao",
+    "kind": "career",
+    "title": "Eleição da associação de moradores",
+    "text": "A associação de moradores vai eleger nova diretoria, e há anos o presidente atual controla o microfone, a chave da sede e as reuniões. Um grupo de jovens e de mães do bairro pede que você se candidate. É um trabalho de paciência, ata e cafezinho, que também é a escola mais prática de política que existe.",
+    "status": "rascunho",
+    "tags": ["civil", "bairro", "eleicao"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_lider_comunitario"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "disputar",
+        "label": "Disputar a presidência da associação",
+        "outcomes": [
+          {
+            "chance": 2,
+            "text": "Você vence e abre a sede para o bairro.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 7
+              },
+              {
+                "add": "network",
+                "value": 6
+              },
+              {
+                "addTag": "entity_leader"
+              },
+              {
+                "addTag": "promessa_categoria"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "Você perde, mas organiza um grupo de oposição.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 3
+              },
+              {
+                "add": "network",
+                "value": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "indicar",
+        "label": "Apoiar uma moradora para a chapa",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "A nova diretoria o tem como conselheiro.",
+            "effects": [
+              {
+                "add": "network",
+                "value": 4
+              },
+              {
+                "add": "integrity",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ev_civil_comunitario_mutirao",
+    "kind": "career",
+    "title": "Mutirão de fim de semana",
+    "text": "O bairro quer limpar o córrego, pintar a escola e consertar o campinho, tudo no mesmo sábado. Os recursos são poucos e a vontade é muita. A prefeitura promete caçamba, o comércio promete tinta, e você precisa transformar promessas em gente de verdade com enxada na mão.",
+    "status": "rascunho",
+    "tags": ["civil", "bairro", "mutirao"],
+    "when": {
+      "all": [
+        {
+          "phase": "civil"
+        },
+        {
+          "origin": "ori_lider_comunitario"
+        }
+      ]
+    },
+    "weight": 2,
+    "choices": [
+      {
+        "id": "convocar",
+        "label": "Convocar o bairro inteiro",
+        "outcomes": [
+          {
+            "chance": 3,
+            "text": "O mutirão dá certo e vira festa de rua.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 6
+              },
+              {
+                "add": "network",
+                "value": 6
+              },
+              {
+                "add": "base",
+                "value": 3
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          },
+          {
+            "chance": 1,
+            "text": "Aparece pouca gente, mas o essencial é feito.",
+            "effects": [
+              {
+                "add": "prestige",
+                "value": 3
+              },
+              {
+                "add": "network",
+                "value": 3
+              },
+              {
+                "addTag": "origin_loyal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "delegar",
+        "label": "Delegar à prefeitura",
+        "outcomes": [
+          {
+            "chance": 1,
+            "text": "A prefeitura faz parte e leva o crédito.",
+            "effects": [
+              {
+                "add": "capital",
+                "value": 3
+              },
+              {
+                "add": "prestige",
+                "value": -2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

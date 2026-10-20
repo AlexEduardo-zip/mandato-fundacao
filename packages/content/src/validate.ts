@@ -2,6 +2,7 @@ import { defaultConfig, type Catalog, type GameEvent, type OriginConfig } from "
 import { z } from "zod";
 import {
   anchorsFileSchema,
+  eventsFileSchema,
   originsFileSchema,
   partiesFileSchema,
   type ContentOrigin,
@@ -9,6 +10,8 @@ import {
 
 export interface RawContent {
   anchors: unknown;
+  /** Career and civil events, from every data/events-*.json file. */
+  events: unknown;
   origins: unknown;
   parties: unknown;
 }
@@ -18,11 +21,13 @@ export interface ValidationOptions {
   requireDraft?: boolean;
   expectedAnchors?: number;
   expectedOrigins?: number;
+  /** Minimum number of career events; also used to catch a missing file. */
+  minEvents?: number;
 }
 
 export interface ValidationResult {
   errors: string[];
-  counts: { anchors: number; origins: number; parties: number; blocs: number };
+  counts: { anchors: number; events: number; origins: number; parties: number; blocs: number };
 }
 
 // Real parties and public figures must never appear in the content (docs/04 and CLAUDE.md).
@@ -82,12 +87,14 @@ export function validateContent(
 ): ValidationResult {
   const { requireDraft = true } = options;
   const errors: string[] = [];
-  const counts = { anchors: 0, origins: 0, parties: 0, blocs: 0 };
+  const counts = { anchors: 0, events: 0, origins: 0, parties: 0, blocs: 0 };
 
   const anchors = anchorsFileSchema.safeParse(raw.anchors);
+  const events = eventsFileSchema.safeParse(raw.events);
   const origins = originsFileSchema.safeParse(raw.origins);
   const parties = partiesFileSchema.safeParse(raw.parties);
   if (!anchors.success) errors.push(...formatIssues("anchors.json", anchors.error));
+  if (!events.success) errors.push(...formatIssues("events-*.json", events.error));
   if (!origins.success) errors.push(...formatIssues("origins.json", origins.error));
   if (!parties.success) errors.push(...formatIssues("parties.json", parties.error));
 
@@ -129,6 +136,49 @@ export function validateContent(
           errors.push(
             `${where}: world effect ${e.addWorld} ${e.value} exceeds +-${MAX_WORLD_EFFECT}`,
           );
+        }
+      }
+    }
+  }
+
+  if (events.success) {
+    counts.events = events.data.length;
+    if (options.minEvents !== undefined && events.data.length < options.minEvents) {
+      errors.push(
+        `events: expected at least ${options.minEvents} events, found ${events.data.length}`,
+      );
+    }
+    const anchorIds = anchors.success ? anchors.data.map((a) => a.id) : [];
+    const ids = events.data.map((e) => e.id);
+    for (const dup of duplicates([...anchorIds, ...ids]))
+      errors.push(`events: duplicate id ${dup}`);
+    for (const e of events.data) {
+      const where = `events: ${e.id}`;
+      const words = e.text.trim().split(/\s+/).length;
+      if (words < MIN_WORDS || words > MAX_WORDS) {
+        errors.push(`${where}: text has ${words} words, expected ${MIN_WORDS}-${MAX_WORDS}`);
+      }
+      if (!e.scheduledOnly && (!e.choices || e.choices.length === 0)) {
+        errors.push(`${where}: needs at least one choice`);
+      }
+      const choiceIds = (e.choices ?? []).map((c) => c.id);
+      for (const dup of duplicates(choiceIds)) errors.push(`${where}: duplicate choice id ${dup}`);
+      const effects = [
+        ...(e.effects ?? []),
+        ...(e.worldEffects ?? []),
+        ...(e.choices ?? []).flatMap((c) => c.outcomes.flatMap((o) => o.effects)),
+      ];
+      for (const fx of effects) {
+        if ("add" in fx && Math.abs(fx.value) > MAX_WORLD_EFFECT) {
+          errors.push(`${where}: effect on ${fx.add} ${fx.value} exceeds +-${MAX_WORLD_EFFECT}`);
+        }
+        if ("addWorld" in fx && Math.abs(fx.value) > MAX_WORLD_EFFECT) {
+          errors.push(
+            `${where}: world effect ${fx.addWorld} ${fx.value} exceeds +-${MAX_WORLD_EFFECT}`,
+          );
+        }
+        if ("schedule" in fx && ![...anchorIds, ...ids].includes(fx.schedule.eventId)) {
+          errors.push(`${where}: schedules unknown event ${fx.schedule.eventId}`);
         }
       }
     }
@@ -178,6 +228,7 @@ export function validateContent(
 
   for (const [file, value] of [
     ["anchors.json", raw.anchors],
+    ["events", raw.events],
     ["origins.json", raw.origins],
     ["parties.json", raw.parties],
   ] as const) {
@@ -205,9 +256,12 @@ function omit(value: object, keys: string[]): Record<string, unknown> {
 }
 
 /** Anchors as engine events, without the editorial fields. */
-export function toCatalog(rawAnchors: unknown): Catalog {
+export function toCatalog(rawAnchors: unknown, rawEvents: unknown = []): Catalog {
   const anchors = anchorsFileSchema.parse(rawAnchors);
-  const events = anchors.map((a) => omit(a, ["status", "sources", "date"]) as unknown as GameEvent);
+  const career = eventsFileSchema.parse(rawEvents);
+  const events = [...anchors, ...career].map(
+    (a) => omit(a, ["status", "sources", "date"]) as unknown as GameEvent,
+  );
   return { events };
 }
 

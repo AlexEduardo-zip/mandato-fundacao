@@ -68,7 +68,7 @@ Todo conteúdo nasce com `status: "rascunho"`; a revisão humana está na trilha
 | [x] | E2-2 | Âncoras históricas (17) com fontes e datas, marcadas para revisão | P0 | L |
 | [x] | E2-3 | 6 origens do MVP com perfil, bônus, fraquezas e faixa de idade | P0 | M |
 | [x] | E2-4 | Partidos fictícios e blocos políticos | P0 | S |
-| [ ] | E2-5 | 10 eventos civis genéricos e 18 exclusivos por origem | P0 | L |
+| [x] | E2-5 | 10 eventos civis genéricos e 18 exclusivos por origem | P0 | L |
 | [ ] | E2-6 | 20 eventos de carreira: formação e ascensão | P0 | L |
 | [ ] | E2-7 | 20 eventos de carreira: auge e crise | P0 | L |
 | [ ] | E2-8 | 20 eventos de carreira: legado, sucessão, reabilitação | P1 | L |

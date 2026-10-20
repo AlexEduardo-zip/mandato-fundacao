@@ -19,7 +19,7 @@ describe("real content", () => {
   it("passes validation with 17 anchors, 6 origins and the fictional parties", () => {
     const { errors, counts } = validateContent(real(), strict);
     expect(errors).toEqual([]);
-    expect(counts).toEqual({ anchors: 17, origins: 6, parties: 6, blocs: 3 });
+    expect(counts).toEqual({ anchors: 17, events: 28, origins: 6, parties: 6, blocs: 3 });
   });
 
   it("keeps every item as a draft", () => {
@@ -74,6 +74,48 @@ describe("real content", () => {
     const after = startTurn(base, { events: catalog.events.filter((e) => e.anchorYear === 1990) });
     expect(after.world.economy).toBeLessThan(base.world.economy);
     expect(after.world.mood).toBeLessThan(base.world.mood);
+  });
+});
+
+describe("civil events (E2-5)", () => {
+  type Ev = { id: string; when: { all?: { origin?: string }[] }; tags: string[] };
+  const events = () => real().events as Ev[];
+  const originOf = (e: Ev) => e.when.all?.find((c) => c.origin)?.origin;
+
+  it("has 10 generic events and 3 exclusive ones for each of the 6 origins", () => {
+    const generic = events().filter((e) => !originOf(e));
+    expect(generic).toHaveLength(10);
+    const byOrigin = new Map<string, number>();
+    for (const e of events()) {
+      const o = originOf(e);
+      if (o) byOrigin.set(o, (byOrigin.get(o) ?? 0) + 1);
+    }
+    expect([...byOrigin.keys()].sort()).toEqual(Object.keys(defaultConfig.origins).sort());
+    for (const n of byOrigin.values()) expect(n).toBe(3);
+  });
+
+  it("every door has at least one event that can open it", () => {
+    const tags = new Set(JSON.stringify(real().events).match(/"addTag": ?"[a-z_]+"/g));
+    for (const t of ["entity_leader", "invite_post", "strong_ally", "crisis_call"]) {
+      expect(
+        [...tags].some((x) => x.includes(t)),
+        t,
+      ).toBe(true);
+    }
+  });
+
+  it("rejects an event that schedules an unknown consequence or breaks the limits", () => {
+    const raw = clone(real());
+    const first = (raw.events as Json[])[0] as {
+      choices: { outcomes: { effects: unknown[] }[] }[];
+    };
+    first.choices[0]!.outcomes[0]!.effects.push({
+      schedule: { eventId: "ev_nao_existe", delayYears: 1 },
+    });
+    first.choices[0]!.outcomes[0]!.effects.push({ add: "money", value: 40 });
+    const text = validateContent(raw, strict).errors.join();
+    expect(text).toContain("schedules unknown event");
+    expect(text).toContain("exceeds");
   });
 });
 

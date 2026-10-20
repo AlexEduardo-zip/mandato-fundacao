@@ -2,7 +2,10 @@ import { loadRawContent, toCatalog } from "@mandato/content";
 import { describe, expect, it } from "vitest";
 import { formatReport, simulateBatch, simulateRun } from "./simulate.js";
 
-const catalog = toCatalog(loadRawContent().anchors);
+const catalog = (() => {
+  const raw = loadRawContent();
+  return toCatalog(raw.anchors, raw.events);
+})();
 
 describe("simulateRun", () => {
   it("is deterministic per seed", () => {

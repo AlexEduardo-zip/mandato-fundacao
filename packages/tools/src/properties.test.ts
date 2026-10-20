@@ -12,7 +12,10 @@ import {
 import { describe, expect, it } from "vitest";
 import { simulateRun } from "./simulate.js";
 
-const catalog = toCatalog(loadRawContent().anchors);
+const catalog = (() => {
+  const raw = loadRawContent();
+  return toCatalog(raw.anchors, raw.events);
+})();
 const RUNS = 120;
 
 const inRange = (v: number) => Number.isFinite(v) && v >= 0 && v <= 100;

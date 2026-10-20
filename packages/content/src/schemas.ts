@@ -151,5 +151,11 @@ export const partiesFileSchema = z.strictObject({
   parties: z.array(partySchema).min(1),
 });
 
+export const careerEventSchema = eventSchema.refine(
+  (e) => e.kind === "career",
+  "must be a career event",
+);
+
 export const anchorsFileSchema = z.array(anchorSchema);
+export const eventsFileSchema = z.array(careerEventSchema);
 export const originsFileSchema = z.array(originSchema);
